@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <title>LOGIN</title>
+    <script type="text/javascript" src="{% static "js/jquery.1.10.2.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/login.js" %}"></script>
+    <script type="text/javascript">
+    	$.ajaxSetup({
+    		data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+		});
+    </script>
+</head>
+<body>
+<div>
+    {% csrf_token %}
+    手机号：<input type="text" id="tel"><br/>
+    验证码：<input type="text" id="code"/>
+    <button id="send_sms">发送短信</button>
+    <br/><br/>
+
+    <input type="button" value="登录" id="login">
+    <br/>
+
+    <div id="errorMsg">
+    </div>
+</div>
+</body>
+</html>
