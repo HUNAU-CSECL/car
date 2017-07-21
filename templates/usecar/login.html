@@ -12,11 +12,6 @@
     <link rel="stylesheet" href="{% static "font-awesome/css/font-awesome.css" %}">
     <link rel="stylesheet" href="{% static "css/demos.css" %}">
     <link rel="stylesheet" href="{% static "css/login.css" %}">
-    <script type="text/javascript">
-        $.ajaxSetup({
-            data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
-        });
-    </script>
     <script src="{% static "js/jquery.1.10.2.min.js" %}"></script>
     <script src="{% static "js/fastclick.js" %}"></script>
     <script src="{% static "js/login.js" %}"></script>
@@ -24,15 +19,12 @@
 </head>
 
 <body ontouchstart>
-    <!--    <header class="bar bar-nav">
-        <h1 class="title">手机账号登录</h1>
-    </header> -->
+{% csrf_token %}
     <header class='demos-header' style="padding-top: 3.2rem">
         <h5 class="demos-title"><img src="{% static "img/logo.png" %}"></h5>
         <p class='demos-sub-title'>外出用车申请</p>
     </header>
     <section>
-    {% csrf_token %}
         <div class="weui-cells weui-cells_form " id="login-cell">
             <div class="weui-cell ">
                 <div class="weui-cell__hd">
@@ -68,12 +60,5 @@
         margin: 25px 0 10px 0;
     }
     </style>
-    
-    
-<!--     <script type="text/javascript">
-
-
-</script> -->
 </body>
-
 </html>

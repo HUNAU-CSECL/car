@@ -11,23 +11,6 @@ from .aliyun import *
 
 
 def test(request):
-    # response = models.Persons.objects.filter(tel='13975659747')
-    # # c = list(response)
-    # e = []
-    # for a in response:
-    #     e.append(int(a.id))
-    # request.session["d"] = e
-    # persons = request.session.get('d')
-    # y = {}
-    # for per_id in persons:
-    #     obj = models.Persons.objects.get(id=per_id).co.all()
-    #     y[per_id] = (obj[0].name,obj[0].id)
-    #     # y[com_id] = obj[0].id
-    # # data = {2L: u'2号', 1L: u'1好', 3L: u'\u6e56\u5357\u5927\u5b66', 4L: u'\u957f\u6c99\u7406\u5de5\u5927\u5b66', 5L: u'\u4e2d\u5357\u6797\u4e1a\u79d1\u6280\u5927\u5b66'}
-    # data = sorted(y.items(), key=lambda d: d[0])
-    # # data=json.dumps(data)
-    # per_id=data[0][0]
-    # com_id=data[2][1][1]
     obj = models.Persons.objects.values('role').get(id=1)
     return render(request, 'usecar/test.html', {'response': str(obj['role'])})
 
@@ -58,7 +41,7 @@ def send_mes(request):
 def login_check(request):
     tel = request.POST.get('tel')
     code = request.POST.get('code')
-    if tel == request.session.get('tel') and (code == request.session.get('code') or code == '888888'):
+    if (tel == request.session.get('tel')) and ((code == request.session.get('code')) or (code == '888888')):
         response = models.Persons.objects.filter(tel=tel)
         lic = []
         for a in response:
