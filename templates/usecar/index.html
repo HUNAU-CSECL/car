@@ -1,8 +1,16 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="utf-8">
     <title>INDEX</title>
+    <script type="text/javascript" src="{% static "js/jquery.1.10.2.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/index.js" %}"></script>
+    <script type="text/javascript">
+    	$.ajaxSetup({
+    		data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+		});
+    </script>
 </head>
 <body>
 <h1>HELLO!</h1>

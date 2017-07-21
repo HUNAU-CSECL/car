@@ -43,8 +43,8 @@ class Application(models.Model):
     start = models.DateTimeField(u'出发时间')
     ab_end = models.DateTimeField(u'预计到达时间')
     reason = models.TextField(u'用车原由')
-    car = models.ForeignKey('Cars')
-    end = models.DateTimeField(u'到达时间')
+    car = models.ForeignKey('Cars',null=True)
+    end = models.DateTimeField(u'到达时间',null=True)
 
 class Exam(models.Model):
     num = models.OneToOneField('Application')
