@@ -1,0 +1,61 @@
+/*--登录页面css*/
+
+.demos-title {
+    text-align: center;
+    font-size: 34px;
+    color: #3cc51f;
+    font-weight: 400;
+    margin: 0 15%;
+}
+
+#login-cell {
+    margin: 0 20px;
+    background: none;
+    border-top: none;
+}
+
+.weui-cell {
+    padding: 10px 0;
+}
+
+.weui-cells:before {
+    border-top: 0
+}
+
+#login-input {
+    opacity: .7;
+    font-size: 18px;
+}
+
+#login-phone {
+    width: 85px;
+    font-size: 16px;
+    color: #4A4A4A;
+}
+
+.demos-sub-title {
+    text-align: center;
+    color: #888;
+    font-size: 14px;
+    font-weight: bold;
+}
+#login_get{
+    height: 30px;
+    background: #ff711c;
+    border: none;
+    color: #fff;
+    font-size: 14px;
+    border-radius: 4px;
+
+/*页脚*/
+
+footer {
+    text-align: center;
+    font-size: 14px;
+    padding: 20px;
+}
+
+footer a {
+    color: #999;
+    text-decoration: none;
+}
