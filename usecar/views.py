@@ -170,8 +170,7 @@ def apply(request):
     if models.Application.object.filter(person=person, num=num, aplace=aplace, bplace=bplace, start=start, ab_end=ab_end, reason=reason):
         return JsonResponse({'msg': 'repeat'})
     else:
-        u = models.Application(person=person, num=num, aplace=aplace,
-                               bplace=bplace, start=start, ab_end=ab_end, reason=reason)
+        u = models.Application(person=person, num=num, aplace=aplace,bplace=bplace, start=start, ab_end=ab_end, reason=reason)
         u.save()
         num = models.Application.object.getn(
             person=person, num=num, aplace=aplace, bplace=bplace, start=start, ab_end=ab_end, reason=reason)
@@ -187,3 +186,6 @@ def apply(request):
                 cc_list_to_insert.append(Cc(num=num, to=to))
             Cc.objects.bulk_create(cc_list_to_insert)
     return JsonResponse({'msg': 'success'})
+
+# def function():
+# 	pass
