@@ -1,0 +1,131 @@
+body,
+html {
+    height: 100%;
+    -webkit-tap-highlight-color: transparent;
+    background: #fff;
+    font-family: -apple-system-font, "Helvetica Neue", "Roboto", "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+}
+
+a {
+    color: #4f4f4f;
+}
+
+.weui-dialog.weui-dialog--visible,
+.weui-toast.weui-dialog--visible,
+.weui-dialog.weui-toast--visible,
+.weui-toast.weui-toast--visible {
+    border-radius: 8px;
+}
+
+.demos-header {
+    padding: 35px 0;
+}
+
+.weui-cell:before {
+    left: 0px;
+}
+
+.weui-cell-travel {
+    -webkit-align-items: flex-start;
+    align-items: flex-start;
+}
+
+.weui-tab__bd {
+    padding-bottom: 50px
+}
+
+.bar-nav {
+    top: 0;
+}
+
+.bar {
+    position: fixed;
+    right: 0;
+    left: 0;
+    z-index: 10;
+    height: 2.2rem;
+    padding-right: .5rem;
+    padding-left: .5rem;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    color: #fff;
+    padding: 0px 0;
+    /*  margin-left:10px;
+  margin-right:10px;*/
+}
+
+.bar .title {
+    position: absolute;
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin: 0 -.5rem;
+    font-size: .90rem;
+    font-weight: 800;
+    line-height: 2.2rem;
+    color: #fff;
+    text-align: center;
+}
+
+.bar .icon {
+    position: relative;
+    z-index: 20;
+    padding: .6rem .1rem;
+    font-size: 1.2rem;
+    line-height: 1.2rem;
+    color: #fff;
+}
+
+.pull-left {
+    float: left;
+}
+
+.pull-right {
+    float: right;
+}
+
+.pull-right i,
+.pull-left i {
+    font-size: 1rem;
+}
+
+.sstfont {
+    font-family: "sstfont" !important;
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.sst-xiangzuo:before {
+    content: "\e639";
+}
+
+.weui-btn_primary {
+    background-color: #ff711c;
+}
+
+#btn-color {
+    font-size: 18px;
+    color: #fbd8a8;
+    word-spacing: 16px;
+    border: none;
+    margin: 12px 4%;
+}
+
+.weui-cell {
+    padding: 14px 8px;
+}
+
+.toolbar .picker-button {
+    color: #446569;
+}
+
+.toolbar .title {
+    color: #e8e5e5;
+    background: #ff711c;
+}
+
+.weui-cells_checkbox .weui-check:checked+.weui-icon-checked:before {
+    color: #07bb8b;
+}

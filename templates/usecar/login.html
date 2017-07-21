@@ -1,30 +1,87 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html>
+
 <head>
+    <title>用车申请</title>
     <meta charset="utf-8">
-    <title>LOGIN</title>
-    <script type="text/javascript" src="{% static "js/jquery.1.10.2.min.js" %}"></script>
-    <script type="text/javascript" src="{% static "js/login.js" %}"></script>
-    <script type="text/javascript">
-    	$.ajaxSetup({
-    		data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
-		});
-    </script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="{% static "css/weui.min.css" %}">
+    <link rel="stylesheet" href="{% static "css/jquery-weui.css" %}">
+    <link rel="stylesheet" href="{% static "font-awesome/css/font-awesome.css" %}">
+    <link rel="stylesheet" href="{% static "css/demos.css" %}">
+    <link rel="stylesheet" href="{% static "css/login.css" %}">
 </head>
-<body>
-<div>
-    {% csrf_token %}
-    手机号：<input type="text" id="tel"><br/>
-    验证码：<input type="text" id="code"/>
-    <button id="send_sms">发送短信</button>
-    <br/><br/>
 
-    <input type="button" value="登录" id="login">
-    <br/>
-
-    <div id="errorMsg">
+<body ontouchstart>
+    <!--    <header class="bar bar-nav">
+        <h1 class="title">手机账号登录</h1>
+    </header> -->
+    <header class='demos-header' style="padding-top: 3.2rem">
+        <h5 class="demos-title"><img src="{% static "img/logo.png" %}"></h5>
+        <p class='demos-sub-title'>外出用车申请</p>
+    </header>
+    <section>
+        <div class="weui-cells weui-cells_form " id="login-cell">
+            <div class="weui-cell ">
+                <div class="weui-cell__hd">
+                    <label class="weui-label" id="login-phone">手机</label>
+                </div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" id="login-input" type="text" placeholder="输入手机号码">
+                </div>
+            </div>
+            <div class="weui-cell">
+                <div class="weui-cell__hd">
+                    <label class="weui-label" id="login-phone">验证码</label>
+                </div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" id="login-input" type="text" placeholder="输入验证码">
+                </div>
+                    <div class="weui_cell_ft"> 
+    
+    <input style="width:117px;" id="login_get" type="button" class="weui_btn weui_btn weui_btn_mini weui_btn_primary" value="获取验证码"  onclick="clickButton(this)"/>  </div>
+            </div>
+        </div>
+        <div class='demos-content-padded'>
+            <a href="mymessage.html" id="btn-color" class="weui-btn weui-btn_primary">登   录</a>
+        </div>
+    </section>
+    <div class="weui-footer">
+        <p class="weui-footer__links">
+            <a href="index.html" class="weui-footer__link"></a>
+        </p>
+        <p class="weui-footer__text">Copyright © 2017 usecar.com</p>
     </div>
-</div>
+    <style>
+    .weui-footer {
+        margin: 25px 0 10px 0;
+    }
+    </style>
+    <script src="{% static "js/jquery.1.10.2.min.js" %}"></script>
+    <script src="{% static "js/fastclick.js" %}"></script>
+    <script>
+    $(function() {
+        FastClick.attach(document.body);
+    });
+    </script>
+    <script src="{% static "js/jquery-weui.min.js" %}"></script>
+    <script type="text/javascript">
+function clickButton(obj){
+    var obj = $(obj);
+    obj.attr("disabled","disabled");/*按钮倒计时*/
+    var time = 60;
+    var set=setInterval(function(){
+    obj.val(--time+"(s)");
+    }, 1000);/*等待时间*/
+    setTimeout(function(){
+    obj.attr("disabled",false).val("重新获取验证码");/*倒计时*/
+    clearInterval(set);
+    }, 60000);
+}
+
+</script>
 </body>
+
 </html>
