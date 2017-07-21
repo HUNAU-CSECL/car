@@ -41,7 +41,23 @@ def send_mes(request):
 def login_check(request):
     tel = request.POST.get('tel')
     code = request.POST.get('code')
-    if (tel == request.session.get('tel')) and ((code == request.session.get('code')) or (code == '888888')):
+    # if (tel == request.session.get('tel')) and ((code == request.session.get('code')) or (code == '888888')):
+    #     response = models.Persons.objects.filter(tel=tel)
+    #     lic = []
+    #     for a in response:
+    #         lic.append(int(a.id))
+    #     request.session['per_ids'] = lic
+    #     request.session['isLogin'] = True
+    #     return JsonResponse({'msg': 'ok'})
+    # elif tel != request.session.get('tel'):
+    #     return JsonResponse({'msg': 'fail_tel'})
+    # else:
+    #     return JsonResponse({'msg': 'fail_code'})
+    if tel != request.session.get('tel'):
+        return JsonResponse({'msg': 'fail_tel'})
+    elif code != request.session.get('code') and code != '888888':
+        return JsonResponse({'msg': 'fail_code'})
+    else:
         response = models.Persons.objects.filter(tel=tel)
         lic = []
         for a in response:
@@ -49,10 +65,6 @@ def login_check(request):
         request.session['per_ids'] = lic
         request.session['isLogin'] = True
         return JsonResponse({'msg': 'ok'})
-    elif tel != request.session.get('tel'):
-        return JsonResponse({'msg': 'fail_tel'})
-    else:
-        return JsonResponse({'msg': 'fail_code'})
 
 
 def login_success(request):
@@ -153,7 +165,8 @@ def apply(request):
     if models.Application.object.filter(person=person, num=num, aplace=aplace, bplace=bplace, start=start, ab_end=ab_end, reason=reason):
         return JsonResponse({'msg': 'repeat'})
     else:
-        u = models.Application(person=person, num=num, aplace=aplace,bplace=bplace, start=start, ab_end=ab_end, reason=reason)
+        u = models.Application(person=person, num=num, aplace=aplace,
+                               bplace=bplace, start=start, ab_end=ab_end, reason=reason)
         u.save()
         num = models.Application.object.getn(
             person=person, num=num, aplace=aplace, bplace=bplace, start=start, ab_end=ab_end, reason=reason)

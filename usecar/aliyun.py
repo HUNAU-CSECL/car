@@ -7,8 +7,6 @@ import uuid
 短信产品-发送短信接口
 Created on 2017-06-12
 """
-
-
 REGION = "cn-hangzhou"
 # ACCESS_KEY_ID/ACCESS_KEY_SECRET 根据实际申请的账号信息进行替换
 ACCESS_KEY_ID = "LTAI4XyYISrLjWjG"
