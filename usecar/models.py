@@ -41,11 +41,14 @@ class Application(models.Model):
     aplace = models.CharField(u'出发地', max_length=100)
     bplace = models.CharField(u'目的地', max_length=100)
     start = models.DateTimeField(u'出发时间')
-    ab_end = models.DateTimeField(u'预计到达时间')
+    ab_end = models.IntegerField(u'预计用时')
     reason = models.TextField(u'用车原由')
     driver = models.ForeignKey('Persons',blank=True, null=True,related_name="driver_set")
     car = models.ForeignKey('Cars', blank=True, null=True)
     end = models.DateTimeField(u'到达时间', blank=True, null=True)
+
+    def __unicode__(self):
+        return self.aplace
 
 
 class Exam(models.Model):
@@ -56,7 +59,7 @@ class Exam(models.Model):
     att2 = models.SmallIntegerField(u'审核人2意见（0不同意、1同意）', blank=True, null=True)
 
     def __unicode__(self):
-        return self.att2
+        return self.num
 
 
 class Cc(models.Model):
