@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render, redirect
 from django.http import JsonResponse, HttpResponse
+from django.forms.models import model_to_dict
 import random
+import time
 import uuid
 import json
 from . import models
@@ -11,8 +13,38 @@ from .aliyun import *
 
 
 def test(request):
-    obj = models.Persons.objects.values('role').get(id=1)
-    return render(request, 'usecar/test.html', {'response': str(obj['role'])})
+    appl_id = 1
+    obj = models.Application.objects.get(id=int(appl_id))
+    dic = model_to_dict(obj)
+    dic.pop('person')
+    dic.pop('car')
+    dic.pop('driver')
+
+    dic['start']=time.mktime(dic['start'].timetuple())
+    dic['ab_end']=time.mktime(dic['ab_end'].timetuple())
+
+
+    dic['name'] = obj.person.name
+    dic['tel'] = obj.person.tel
+    if obj.car:
+        dic['car'] = obj.car.brand + obj.car.style
+        dic['lic'] = obj.car.license
+    else:
+        dic['car'] = None
+        dic['lic'] = None
+    if obj.driver:
+        dic['driver'] = obj.driver.name
+        dic['driver_tel'] = obj.driver.tel
+    else:
+        dic['driver'] = None
+        dic['driver_tel'] = None
+    if dic['end']:
+    	dic['end']=time.mktime(dic['end'].timetuple())
+    else:
+    	dic['end'] = None
+
+    json_str=json.dumps(dic)
+    return render(request, 'usecar/test.html', {'response': json_str})
 
 
 def login(request):
@@ -162,26 +194,56 @@ def apply(request):
     ab_end = request.POST.get('ab_end')
     reason = request.POST.get('reason')
 
-    if models.Application.object.filter(person=person, num=num, aplace=aplace, bplace=bplace, start=start, ab_end=ab_end, reason=reason):
+    if models.Application.objects.filter(person=person, num=num, aplace=aplace, bplace=bplace, start=start, ab_end=ab_end, reason=reason):
         return JsonResponse({'msg': 'repeat'})
     else:
         u = models.Application(person=person, num=num, aplace=aplace,
                                bplace=bplace, start=start, ab_end=ab_end, reason=reason)
         u.save()
-        num = models.Application.object.getn(
+        num = models.Application.objects.getn(
             person=person, num=num, aplace=aplace, bplace=bplace, start=start, ab_end=ab_end, reason=reason)
 
-        exam1 = models.Persons.object.get(id=int(exam[0]))
-        exam2 = models.Persons.object.get(id=int(exam[1]))
+        exam1 = models.Persons.objects.get(id=int(exam[0]))
+        exam2 = models.Persons.objects.get(id=int(exam[1]))
         e = models.Exam(num=num, exam1=exam1, exam2=exam2)
 
         if cc:
             cc_list_to_insert = list()
             for a in cc:
-                to = models.Persons.object.get(id=int(a))
+                to = models.Persons.objects.get(id=int(a))
                 cc_list_to_insert.append(Cc(num=num, to=to))
             Cc.objects.bulk_create(cc_list_to_insert)
     return JsonResponse({'msg': 'success'})
 
-# def function():
-# 	pass
+
+def check_info(request):
+    appl_id = request.POST.get('id')
+    obj = models.Application.objects.get(id=int(appl_id))
+    dic = model_to_dict(obj)
+    dic.pop('person')
+    dic.pop('car')
+    dic.pop('driver')
+
+    dic['start']=time.mktime(dic['start'].timetuple())
+    dic['ab_end']=time.mktime(dic['ab_end'].timetuple())
+
+    dic['name'] = obj.person.name
+    dic['tel'] = obj.person.tel
+    if obj.car:
+        dic['car'] = obj.car.brand + obj.car.style
+        dic['lic'] = obj.car.license
+    else:
+        dic['car'] = None
+        dic['lic'] = None
+    if obj.driver:
+        dic['driver'] = obj.driver.name
+        dic['driver_tel'] = obj.driver.tel
+    else:
+        dic['driver'] = None
+        dic['driver_tel'] = None
+    if dic['end']:
+    	dic['end']=time.mktime(dic['end'].timetuple())
+    else:
+    	dic['end'] = None
+    json_str=json.dumps(dic)
+    return HttpResponse(json_str)

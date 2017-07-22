@@ -25,7 +25,7 @@ class Cars(models.Model):
     co = models.ForeignKey('Companies')
 
     def __unicode__(self):
-        return self.brand
+        return self.brand + self.style
 
 
 class Companies(models.Model):
@@ -36,25 +36,28 @@ class Companies(models.Model):
 
 
 class Application(models.Model):
-    person = models.ForeignKey('Persons')
+    person = models.ForeignKey('Persons',related_name="self_set")
     num = models.IntegerField(u'乘车人数')
     aplace = models.CharField(u'出发地', max_length=100)
     bplace = models.CharField(u'目的地', max_length=100)
     start = models.DateTimeField(u'出发时间')
     ab_end = models.DateTimeField(u'预计到达时间')
     reason = models.TextField(u'用车原由')
-    car = models.ForeignKey('Cars',null=True)
-    end = models.DateTimeField(u'到达时间',null=True)
+    driver = models.ForeignKey('Persons',blank=True, null=True,related_name="driver_set")
+    car = models.ForeignKey('Cars', blank=True, null=True)
+    end = models.DateTimeField(u'到达时间', blank=True, null=True)
+
 
 class Exam(models.Model):
     num = models.OneToOneField('Application')
-    exam1 = models.ForeignKey('Persons',related_name='exam1_examset')
-    exam2 = models.ForeignKey('Persons',related_name='exam2_examset')
-    att1 = models.SmallIntegerField(u'审核人1意见（0不同意、1同意）',null=True)
-    att2 = models.SmallIntegerField(u'审核人2意见（0不同意、1同意）',null=True)
+    exam1 = models.ForeignKey('Persons', related_name='exam1_examset')
+    exam2 = models.ForeignKey('Persons', related_name='exam2_examset')
+    att1 = models.SmallIntegerField(u'审核人1意见（0不同意、1同意）', blank=True, null=True)
+    att2 = models.SmallIntegerField(u'审核人2意见（0不同意、1同意）', blank=True, null=True)
 
     def __unicode__(self):
         return self.att2
+
 
 class Cc(models.Model):
     num = models.ForeignKey('Application')
