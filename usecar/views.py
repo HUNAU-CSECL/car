@@ -1,35 +1,28 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render, redirect
 from django.http import JsonResponse, HttpResponse
+from django.forms.models import model_to_dict
 import random
+import time
 import uuid
 import json
 from . import models
 from .aliyun import *
+from .clean import *
 
 # Create your views here.
 
 
 def test(request):
-    # response = models.Persons.objects.filter(tel='13975659747')
-    # # c = list(response)
-    # e = []
-    # for a in response:
-    #     e.append(int(a.id))
-    # request.session["d"] = e
-    # persons = request.session.get('d')
-    # y = {}
-    # for per_id in persons:
-    #     obj = models.Persons.objects.get(id=per_id).co.all()
-    #     y[per_id] = (obj[0].name,obj[0].id)
-    #     # y[com_id] = obj[0].id
-    # # data = {2L: u'2号', 1L: u'1好', 3L: u'\u6e56\u5357\u5927\u5b66', 4L: u'\u957f\u6c99\u7406\u5de5\u5927\u5b66', 5L: u'\u4e2d\u5357\u6797\u4e1a\u79d1\u6280\u5927\u5b66'}
-    # data = sorted(y.items(), key=lambda d: d[0])
-    # # data=json.dumps(data)
-    # per_id=data[0][0]
-    # com_id=data[2][1][1]
-    obj = models.Persons.objects.values('role').get(id=1)
-    return render(request, 'usecar/test.html', {'response': str(obj['role'])})
+    last = 1
+    amount = 0
+    per_obj = models.Persons.objects.get(id=2)
+    count = models.Application.objects.filter(
+        car__isnull=False, end__isnull=True, driver=per_obj).count()
+    obj = models.Application.objects.filter(car__isnull=False, end__isnull=True, driver=per_obj).order_by(
+        '-id')[int(amount):int(amount) + int(last)]
+    json_str=clean(obj, count)
+    return render(request, 'usecar/test.html', {'response': json_str})
 
 
 def login(request):
@@ -58,7 +51,11 @@ def send_mes(request):
 def login_check(request):
     tel = request.POST.get('tel')
     code = request.POST.get('code')
-    if tel == request.session.get('tel') and (code == request.session.get('code') or code == '888888'):
+    if tel != request.session.get('tel'):
+        return JsonResponse({'msg': 'fail_tel'})
+    elif code != request.session.get('code') and code != '888888':
+        return JsonResponse({'msg': 'fail_code'})
+    else:
         response = models.Persons.objects.filter(tel=tel)
         lic = []
         for a in response:
@@ -66,10 +63,6 @@ def login_check(request):
         request.session['per_ids'] = lic
         request.session['isLogin'] = True
         return JsonResponse({'msg': 'ok'})
-    elif tel != request.session.get('tel'):
-        return JsonResponse({'msg': 'fail_tel'})
-    else:
-        return JsonResponse({'msg': 'fail_code'})
 
 
 def login_success(request):
@@ -113,10 +106,15 @@ def main(request):
     per_id = request.session.get('per_id')
     obj = models.Persons.objects.values('role').get(id=per_id)
     role = int(obj['role'])
+    request.session['role'] = role
     if role == 1:
         return render(request, 'driver_index.html')
+    elif role == 2:
+        return render(request, 'tran_index.html')
+    elif role == 3:
+        return render(request, 'appl_index.html')
     else:
-        return render(request, 'index.html')
+        return render(request, 'check_index.html')
 
 
 def exam_persons(request):
@@ -167,25 +165,63 @@ def apply(request):
     ab_end = request.POST.get('ab_end')
     reason = request.POST.get('reason')
 
-    if models.Application.object.filter(person=person, num=num, aplace=aplace, bplace=bplace, start=start, ab_end=ab_end, reason=reason):
+    if models.Application.objects.filter(person=person, num=num, aplace=aplace, bplace=bplace, start=start, ab_end=ab_end, reason=reason):
         return JsonResponse({'msg': 'repeat'})
     else:
-        u = models.Application(person=person, num=num, aplace=aplace,bplace=bplace, start=start, ab_end=ab_end, reason=reason)
+        u = models.Application(person=person, num=num, aplace=aplace,
+                               bplace=bplace, start=start, ab_end=ab_end, reason=reason)
         u.save()
-        num = models.Application.object.getn(
+        num = models.Application.objects.getn(
             person=person, num=num, aplace=aplace, bplace=bplace, start=start, ab_end=ab_end, reason=reason)
 
-        exam1 = models.Persons.object.get(id=int(exam[0]))
-        exam2 = models.Persons.object.get(id=int(exam[1]))
+        exam1 = models.Persons.objects.get(id=int(exam[0]))
+        exam2 = models.Persons.objects.get(id=int(exam[1]))
         e = models.Exam(num=num, exam1=exam1, exam2=exam2)
 
         if cc:
             cc_list_to_insert = list()
             for a in cc:
-                to = models.Persons.object.get(id=int(a))
+                to = models.Persons.objects.get(id=int(a))
                 cc_list_to_insert.append(Cc(num=num, to=to))
             Cc.objects.bulk_create(cc_list_to_insert)
     return JsonResponse({'msg': 'success'})
 
-# def function():
-# 	pass
+
+def left(request):
+    role = request.session.get('role')
+    if role == 1:
+        per_obj = models.Persons.objects.get(id=request.session.get('per_id'))
+        num = models.Application.objects.filter(
+            car__isnull=False, end__isnull=True, driver=per_obj).count()
+        return JsonResponse({'num': num})
+    elif role == 2:
+        num = models.Exam.objects.filter(
+            att1=1, att2=1, num__car__isnull=True, num__driver__isnull=True).count()
+        return JsonResponse({'num': num})
+    elif role == 4:
+        per_obj = models.Persons.objects.get(id=request.session.get('per_id'))
+        num = models.Exam.objects.filter(
+            exam1=per_obj, att1__isnull=True).count()
+        return JsonResponse({'num': num})
+    elif role == 5:
+        per_obj = models.Persons.objects.get(id=request.session.get('per_id'))
+        num = models.Exam.objects.filter(
+            att1=1, exam2=per_obj, att2__isnull=True).count()
+        return JsonResponse({'num': num})
+    else:
+        return JsonResponse({'num': 0})
+
+
+def stay_away(request):
+    last = request.POST.get('last')
+    amount = request.POST.get('amount')
+    per_obj = models.Persons.objects.get(id=2)
+    count = models.Application.objects.filter(
+        car__isnull=False, end__isnull=True, driver=per_obj).count()
+    obj = models.Application.objects.filter(car__isnull=False, end__isnull=True, driver=per_obj).order_by(
+        '-id')[int(amount):int(amount) + int(last)]
+    
+    json_str=clean(obj, count)
+    return HttpResponse(json_str)
+
+

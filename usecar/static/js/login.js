@@ -24,6 +24,7 @@ $(function() {
             url: '/usecar/send_mes/',
             data: {
                 tel: tel,
+                csrfmiddlewaretoken: document.getElementsByName('csrfmiddlewaretoken')[0].value,
             },
             cache: false,
             dataType: 'json',
@@ -49,6 +50,7 @@ $(function() {
                 data: {
                     tel: tel,
                     code: code,
+                    csrfmiddlewaretoken: document.getElementsByName('csrfmiddlewaretoken')[0].value,
                 },
                 cache: false,
                 dataType: 'json',
