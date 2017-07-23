@@ -1,0 +1,419 @@
+/*  底部样式*/
+.weui-tabbar__item.weui-bar__item--on .weui-tabbar__label {
+                 color: #FDDD30;
+             }
+ .weui-tabbar {
+    background-color: #2A3549;
+}
+/*对话框样式*/
+.weui-dialog__btn{
+	color:#000;
+	font-size:14px;
+}
+/*用车申请样式 顶部*/
+#apply-title {
+    background-color:#2a3549;
+}
+.select {
+    position: absolute;
+    left:34%;
+    padding: 0;
+    margin: .3rem auto;
+    font-size: .90rem;
+    font-weight: 800;
+    line-height: 2.2rem;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+}
+
+.select dt {
+    height: 28px;
+    display: inline-block;
+    background: url(../img/xiala.png) no-repeat 97px center ;
+    line-height: 28px;
+    font-weight: bold;
+    padding-left: 10px;
+    cursor: pointer;
+    width: 90px;
+    padding-right: 12px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    position: relative;
+    z-index: 99;
+    border-radius: 5px;
+}
+
+.select dt:hover,
+.select dt.cur {
+    border: 1px solid #409DFE;
+    box-shadow: 0 0 1px #409DFE;
+}
+
+.select dd {
+    position: absolute;
+    right:0px;
+    top: 36px;
+    background: #2a3549;
+    display: none;
+    color:#fff;
+}
+
+.select dd ul {
+    padding: 4px;
+    width: 104px;
+    max-height: 250px;
+    overflow: auto;
+}
+
+.select dd ul li a {
+    line-height: 28px;
+    display: block;
+    padding: 0 8px;
+    color:#fff;
+}
+
+.select dd ul li:hover {
+    background: #409DFE;
+}
+/*个人页面*/         
+             
+             #personal-img {
+                 background-image: url(../img/personal.jpg);
+                 background-size: 100% 100%;
+                 height: 15%;
+                 display: block;
+             }
+             
+             #per-title {
+                 margin-top: -50px;
+                 height: 100px;
+             }
+             
+             #per-touxiang {
+                 margin: 20px auto;
+             }
+             
+             #per-touxiang img {
+                 height: 70px;
+                 width: 70px;
+                 border-radius: 50%;
+             }
+             
+             #per-ming {
+                 margin-top: 0px;
+             }
+             
+             #per-mz {
+                 margin-left: 43%;
+                 margin-bottom: 8px;
+                 font-weight: bold;
+                 font-size: 16px;
+                 letter-spacing: 2px;
+             }
+             
+             #per-col {
+                 margin-top: -10px;
+             }
+             
+             #per-col .weui-col-33 {
+                 text-align: center;
+                 font-size: 14px;
+             }
+             
+             #per-success .weui-badge {
+                 background-color: #04BE02;
+             }
+             
+             #per-doing .weui-badge {
+                 background-color: #FFA42F;
+             }
+             #per-return{
+             	background: #fff;
+             	margin-top:10px;
+             }
+              /*个人信息的页面*/
+             
+             #personal-title {
+                  background: #2a3549;
+                 color: #fff;
+                 font-size: .90rem;
+                 letter-spacing: 2px;
+                 font-weight: bold;
+                 text-align: center;
+                 height: 0px;
+                margin-top: -24px;
+             }
+             
+             #permg {
+                 height: 30px;
+                 width: 30px;
+                 border-radius: 50%;
+             }
+             
+             .per {
+                 color: #7e7c7c;
+                 font-size: 14px;
+                 letter-spacing: 3px;
+             }
+             
+             .fa-th-list {
+                 color: #346366;
+             }
+             
+             .fa-linux {
+                 color: #1c3b3d;
+             }
+             
+             .fa-align-right {
+                 color: #346366;
+             }
+             
+             .fa-align-left {
+                 color: #346366;
+             }
+
+             #ms_ul img {
+                 height: 130px;
+                 width: 140px;
+                 margin-left: 32%;
+                 margin-top: 50px;
+             }
+             
+             #ms_ul span {
+                 color: #adabab;
+                 font-size: 18px;
+                 text-align: center;
+                 margin-left: 40%;
+                 margin-top: 8px;
+             }
+       /*      用车纪律界面*/
+       #usercar{
+       	margin-top:50px;
+       }
+       #usercar p{
+       	font-weight:bold;
+       	font-size:16px;
+       }
+       #usercar #details{
+         color:#888;
+         float: left;
+         margin-top:6px;
+       }
+       #usercar .weui-cell_zt{
+       	font-size:16px;
+       	color:#f47427;
+       }
+        #usercar .weui-cell_tg{
+       	font-size:16px;
+       	color:#1da21c;
+       }      
+        #usercar_b{
+       	margin-top:50px;
+       }
+       #usercar_b p{
+       	font-weight:bold;
+       	font-size:16px;
+       }
+       #usercar_b #details{
+         color:#888;
+         float: left;
+         margin-top:6px;
+       }
+       #usercar_b .weui-cell_zt{
+       	font-size:16px;
+       	color:#f47427;
+       }
+        #usercar_b .weui-cell_tg{
+       	font-size:16px;
+       	color:#1da21c;
+       }
+               #usercar_c{
+       	margin-top:50px;
+       }
+       #usercar_c p{
+       	font-weight:bold;
+       	font-size:16px;
+       }
+       #usercar_c #details{
+         color:#888;
+         float: left;
+         margin-top:6px;
+       }
+       #usercar_c .weui-cell_zt{
+       	font-size:16px;
+       	color:#f47427;
+       }
+        #usercar_c .weui-cell_tf{
+       	font-size:16px;
+       	color:red;
+       }
+    /*   等待审批css*/
+    #myapply-ming {
+    font-size: 18px;
+    margin-left: 8px;
+}
+
+#myapply-zt {
+    margin-left: 8px;
+    margin-top: 6px;
+    font-size: 14px;
+    color: #e69022;
+}
+
+#myapply-me {
+    margin-top: 6px;
+}
+
+#myapply-me label {
+    margin-left: 16px;
+    color: #8c8888;
+    margin-right: 12px;
+}
+
+.myapply-t {
+    border-bottom: 1px solid #d0cdcd;
+}
+
+.weui-flex__item {
+    font-size: 17px;
+    text-align: left;
+    margin-left: 10px;
+}
+
+.fa-star-half-o {
+    color: #1c821c;
+    margin-right: 6px;
+}
+
+ul {
+    height: 170px;
+    width: 1px;
+    margin-top: 4px;
+    margin-left: 10px;
+}
+
+
+/*审批进展*/
+
+.stepInfo {
+    position: relative;
+    background: #efeeee;
+    margin-top: 40px;
+    margin-left: 65px;
+    width: 310px;
+}
+
+.stepInfo ul li {
+    height: 60%;
+    width: 0.1em;
+    background: #060606;
+    list-style: none;
+}
+
+.stepIco {
+    border-radius: 1em;
+    padding: 0.03em;
+    background: #bbb;
+    text-align: center;
+    line-height: 1.5em;
+    color: #fff;
+    position: absolute;
+    width: 1.4em;
+    height: 1.4em;
+}
+
+.stepIco1 {
+    top: -0.7em;
+    left: 0%;
+}
+
+.stepIco2 {
+    top: 22%;
+    left: 0;
+}
+
+.stepIco3 {
+    top: 44%;
+    left: 0;
+}
+
+.stepIco4 {
+    top: 66%;
+    left: 0;
+}
+
+.stepText {
+    color: #1d1c1c;
+    margin-top: -1.3em;
+    width: 8em;
+    text-align: center;
+    margin-left: 2.4em;
+}
+
+#myapply-bottom {
+    background: #f9f7f7;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    height: 40px;
+}
+
+#myapply-lc {
+    height: 320px;
+    background: #efeeee;
+    border-bottom: none;
+}
+
+.weui-col-50 {
+    text-align: center;
+    margin-top: 0px;
+    margin-right: 0px;
+    padding-top: 8px;
+    height: 100%;
+    letter-spacing: 8px;
+}
+
+.bottoma {
+background: #fddd30;
+    color: #000000;
+}
+.weui-panel{
+	background: #efeeee;
+}
+.weui-media-box_appmsg .weui-media-box__thumb {
+    height: 80px;
+    border-radius: 50%;
+}
+/*用车详情*/
+#label_title{
+	font-size:18px;
+	color:#000;
+	font-weight:bold;
+}
+.weui-form-preview__hd .weui-form-preview__value{
+	font-size:14px;
+}
+.fa-trash-o  {
+	color:#2a3549;
+}
+/*消息列表*/
+.we_xiaoxi{
+	color:#666;
+	font-weight:bold;
+}
+/*新建申请*/
+#shenpi{
+	height:46px;
+}
+#shenpi .weui-col-50{
+	margin-top:4px;
+}
+.value{
+    background: #000;
+    height:10%;
+    width:10%;
+    border:50%;
+    color:#fff;
+}

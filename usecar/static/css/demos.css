@@ -43,7 +43,7 @@ a {
     right: 0;
     left: 0;
     z-index: 10;
-    height: 2.2rem;
+    height: 2rem;
     padding-right: .5rem;
     padding-left: .5rem;
     -webkit-backface-visibility: hidden;
@@ -59,7 +59,7 @@ a {
     display: block;
     width: 100%;
     padding: 0;
-    margin: 0 -.5rem;
+    margin: 0 0rem;
     font-size: .90rem;
     font-weight: 800;
     line-height: 2.2rem;
@@ -70,12 +70,15 @@ a {
 .bar .icon {
     position: relative;
     z-index: 20;
-    padding: .6rem .1rem;
+    padding: .4rem .1rem;
     font-size: 1.2rem;
-    line-height: 1.2rem;
+    line-height: 1rem;
     color: #fff;
 }
-
+.bar .icon span{
+    font-size:16px;
+    margin-left:8px;
+}
 .pull-left {
     float: left;
 }
@@ -87,6 +90,7 @@ a {
 .pull-right i,
 .pull-left i {
     font-size: 1rem;
+        margin-left: 8px;
 }
 
 .sstfont {
@@ -102,12 +106,14 @@ a {
 }
 
 .weui-btn_primary {
-    background-color: #ff711c;
+    background-color:#fddd30;
 }
-
+.weui-btn{
+    color:#000;
+}
 #btn-color {
     font-size: 18px;
-    color: #fbd8a8;
+    color: #000;
     word-spacing: 16px;
     border: none;
     margin: 12px 4%;
@@ -118,14 +124,17 @@ a {
 }
 
 .toolbar .picker-button {
-    color: #446569;
+    color:#13e5ff;
 }
 
 .toolbar .title {
     color: #e8e5e5;
-    background: #ff711c;
+    background:#2a3549;
 }
 
 .weui-cells_checkbox .weui-check:checked+.weui-icon-checked:before {
-    color: #07bb8b;
+    color: #18c1da;
+}
+.weui-cells{
+    font-size:14px;
 }
