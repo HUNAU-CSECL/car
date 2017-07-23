@@ -2,6 +2,7 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse, HttpResponse
 from django.forms.models import model_to_dict
+from datetime import datetime
 import random
 import time
 import uuid
@@ -16,12 +17,12 @@ from .clean import *
 def test(request):
     last = 1
     amount = 0
-    per_obj = models.Persons.objects.get(id=2)
+    per_obj = models.Persons.objects.get(id=4)
     count = models.Application.objects.filter(
-        car__isnull=False, end__isnull=True, driver=per_obj).count()
-    obj = models.Application.objects.filter(car__isnull=False, end__isnull=True, driver=per_obj).order_by(
+        car__isnull=False, end__isnull=False, person=per_obj).count()
+    obj = models.Application.objects.filter(car__isnull=False, end__isnull=False, person=per_obj).order_by(
         '-id')[int(amount):int(amount) + int(last)]
-    json_str=clean(obj, count)
+    json_str = clean(obj, count)
     return render(request, 'usecar/test.html', {'response': json_str})
 
 
@@ -211,17 +212,50 @@ def left(request):
     else:
         return JsonResponse({'num': 0})
 
-
+#待完成
 def stay_away(request):
     last = request.POST.get('last')
     amount = request.POST.get('amount')
-    per_obj = models.Persons.objects.get(id=2)
+    per_obj = models.Persons.objects.get(id=request.get.session('per_id'))
     count = models.Application.objects.filter(
         car__isnull=False, end__isnull=True, driver=per_obj).count()
     obj = models.Application.objects.filter(car__isnull=False, end__isnull=True, driver=per_obj).order_by(
         '-id')[int(amount):int(amount) + int(last)]
-    
-    json_str=clean(obj, count)
+    json_str = clean(obj, count)
     return HttpResponse(json_str)
 
+#已完成
+def finished_away(request):
+    last = request.POST.get('last')
+    amount = request.POST.get('amount')
+    per_obj = models.Persons.objects.get(id=request.get.session('per_id'))
+    count = models.Application.objects.filter(
+        car__isnull=False, end__isnull=False, driver=per_obj).count()
+    obj = models.Application.objects.filter(car__isnull=False, end__isnull=False, driver=per_obj).order_by(
+        '-id')[int(amount):int(amount) + int(last)]
+    json_str = clean(obj, count)
+    return HttpResponse(json_str)
 
+#点击完成按钮
+def finish(request):
+    id = int(request.POST.get('id'))
+    end = datetime.now()
+    obj=models.Application.objects.get(id=id)
+    obj.end=end
+    obj.save
+    return JsonResponse({'msg':ok})
+
+#申请中
+def appling(request):
+    last = request.POST.get('last')
+    amount = request.POST.get('amount')
+    per_obj = models.Persons.objects.get(id=request.get.session('per_id'))
+    count = models.Application.objects.filter(
+        car__isnull=False, end__isnull=False, person=per_obj).count()
+    obj = models.Application.objects.filter(car__isnull=False, end__isnull=False, person=per_obj).order_by(
+        '-id')[int(amount):int(amount) + int(last)]
+    json_str = clean(obj, count)
+    return HttpResponse(json_str)
+
+#申请成功
+# def appl_suc(request)
