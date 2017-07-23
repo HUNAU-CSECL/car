@@ -2,7 +2,8 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse, HttpResponse
 from django.forms.models import model_to_dict
-from datetime import datetime
+from django.db.models import Q
+import datetime
 import random
 import time
 import uuid
@@ -13,17 +14,31 @@ from .clean import *
 
 # Create your views here.
 
+# 您有一${type}任务急需处理，请您及时登录<SSSNOW用车>。您正在登录<SSSNOW用车>，此次登录验证码为${code}，请不要泄露给其他人。
+
 
 def test(request):
-    last = 1
-    amount = 0
-    per_obj = models.Persons.objects.get(id=4)
-    count = models.Application.objects.filter(
-        car__isnull=False, end__isnull=False, person=per_obj).count()
-    obj = models.Application.objects.filter(car__isnull=False, end__isnull=False, person=per_obj).order_by(
-        '-id')[int(amount):int(amount) + int(last)]
-    json_str = clean(obj, count)
-    return render(request, 'usecar/test.html', {'response': json_str})
+    start='1500807262'
+    ab_end='2678400'
+    end=int(start)+int(ab_end)
+    start_data=datetime.datetime.fromtimestamp(int(start))
+    end_data=datetime.datetime.fromtimestamp(int(end))
+    obj=models.Application.objects.filter(Q(end__isnull=False),Q(start__range=(start_data,end_data))|Q(ab_end__range=(start_data,end_data))|Q(start__lt=start_data,ab_end__gt=end_data))
+    per_obj=models.Persons.objects.filter(role=1)
+    car_obj=models.Cars.objects.all()
+    dic={}
+    dic1={}
+    dic2={}
+    for per in per_obj:
+        dic1[str(per.id)]={'name':per.name,'tel':per.tel,'state':'1'}
+    for car in car_obj:
+        dic2[str(car.id)]={'style':car.brand+car.style,'lic':car.license,'cap':car.cap,'state':'1'}
+    for a in obj:
+        dic1[str(a.driver.id)]['state']='0'
+        dic2[str(a.car.id)]['state']='0'
+    dic['drivers']=dic1
+    dic['cars']=dic2
+    return render(request, 'usecar/test.html', {'response': dic})
 
 
 def login(request):
@@ -44,7 +59,7 @@ def send_mes(request):
 
         __business_id = uuid.uuid1()
         params = "{\"code\":" + code + "}"
-        send_sms(__business_id, tel, "SSSNOW用车", "SMS_77410034", params)
+        send_sms(__business_id, tel, "SSSNOW用车", "SMS_78560123", params)
         return JsonResponse({'tel_exist': 1})
     return JsonResponse({'tel_exist': 0})
 
@@ -163,17 +178,18 @@ def apply(request):
     aplace = request.POST.get('aplace')
     bplace = request.POST.get('bplace')
     start = request.POST.get('start')
-    ab_end = request.POST.get('ab_end')
+    start_data=datetime.datetime.fromtimestamp(int(start))
+    ab_end = datetime.datetime.fromtimestamp(int(request.POST.get('ab_end'))+int(start))
     reason = request.POST.get('reason')
 
-    if models.Application.objects.filter(person=person, num=num, aplace=aplace, bplace=bplace, start=start, ab_end=ab_end, reason=reason):
+    if models.Application.objects.filter(person=person, num=num, aplace=aplace, bplace=bplace, start=start_data, ab_end=ab_end, reason=reason):
         return JsonResponse({'msg': 'repeat'})
     else:
         u = models.Application(person=person, num=num, aplace=aplace,
-                               bplace=bplace, start=start, ab_end=ab_end, reason=reason)
+                               bplace=bplace, start=start_data, ab_end=ab_end, reason=reason)
         u.save()
         num = models.Application.objects.getn(
-            person=person, num=num, aplace=aplace, bplace=bplace, start=start, ab_end=ab_end, reason=reason)
+            person=person, num=num, aplace=aplace, bplace=bplace, start=start_data, ab_end=ab_end, reason=reason)
 
         exam1 = models.Persons.objects.get(id=int(exam[0]))
         exam2 = models.Persons.objects.get(id=int(exam[1]))
@@ -212,7 +228,9 @@ def left(request):
     else:
         return JsonResponse({'num': 0})
 
-#待完成
+# 待完成
+
+
 def stay_away(request):
     last = request.POST.get('last')
     amount = request.POST.get('amount')
@@ -224,7 +242,19 @@ def stay_away(request):
     json_str = clean(obj, count)
     return HttpResponse(json_str)
 
-#已完成
+
+# 点击完成按钮
+def finish(request):
+    appl_id = int(request.POST.get('id'))
+    end = datetime.now()
+    obj = models.Application.objects.get(id=appl_id)
+    obj.end = end
+    obj.save()
+    return JsonResponse({'msg': ok})
+
+# 已完成
+
+
 def finished_away(request):
     last = request.POST.get('last')
     amount = request.POST.get('amount')
@@ -236,26 +266,113 @@ def finished_away(request):
     json_str = clean(obj, count)
     return HttpResponse(json_str)
 
-#点击完成按钮
-def finish(request):
-    id = int(request.POST.get('id'))
-    end = datetime.now()
-    obj=models.Application.objects.get(id=id)
-    obj.end=end
-    obj.save
-    return JsonResponse({'msg':ok})
 
-#申请中
+# 申请中
 def appling(request):
     last = request.POST.get('last')
     amount = request.POST.get('amount')
     per_obj = models.Persons.objects.get(id=request.get.session('per_id'))
     count = models.Application.objects.filter(
-        car__isnull=False, end__isnull=False, person=per_obj).count()
-    obj = models.Application.objects.filter(car__isnull=False, end__isnull=False, person=per_obj).order_by(
+        car__isnull=True, person=per_obj, start__gte=datetime.now()).exclude(Q(exam__att1=0) | Q(exam__att2=0)).count()
+    obj = models.Application.objects.filter(car__isnull=True, person=per_obj, start__gte=datetime.now()).exclude(Q(exam__att1=0) | Q(exam__att2=0)).order_by(
         '-id')[int(amount):int(amount) + int(last)]
     json_str = clean(obj, count)
     return HttpResponse(json_str)
 
-#申请成功
-# def appl_suc(request)
+# 催办
+def quick(request):
+    appl_id = request.POST.get('id')
+    obj = models.Application.objects.get(id=appl_id).exam
+    if obj.att1 == None:
+        tel = obj.exam1.tel
+        __business_id = uuid.uuid1()
+        params = "{\"type\":\" 审批\"}"
+        send_sms(__business_id, tel, "SSSNOW用车", "SMS_78770137", params)
+    elif obj.att2 == None:
+        tel = obj.exam2.tel
+        __business_id = uuid.uuid1()
+        params = "{\"type\":\" 审批\"}"
+        send_sms(__business_id, tel, "SSSNOW用车", "SMS_78770137", params)
+    else:
+        obj2 = models.Persons.objects.filter(role=2).order_by('?')[:1]
+        tel = obj2[0].tel
+        __business_id = uuid.uuid1()
+        params = "{\"type\":\" 调车\"}"
+        send_sms(__business_id, tel, "SSSNOW用车", "SMS_78770137", params)
+    return JsonResponse({'quick': 'ok'})
+
+# 撤销
+# 申请成功
+
+
+def appl_succ(request):
+    last = request.POST.get('last')
+    amount = request.POST.get('amount')
+    per_obj = models.Persons.objects.get(id=request.get.session('per_id'))
+    count = models.Application.objects.filter(
+        car__isnull=False, driver__isnull=False, person=per_obj).count()
+    obj = models.Application.objects.filter(car__isnull=False, driver__isnull=False, person=per_obj).order_by(
+        '-id')[int(amount):int(amount) + int(last)]
+    json_str = clean(obj, count)
+    return HttpResponse(json_str)
+
+
+# 申请失败
+def appl_fail(request):
+    last = request.POST.get('last')
+    amount = request.POST.get('amount')
+    per_obj = models.Persons.objects.get(id=request.get.session('per_id'))
+    count = models.Application.objects.filter(Q(person=per_obj), Q(
+        start__lte=datetime.now()) | Q(exam__att1=0) | Q(exam__att2=0)).count()
+    obj = models.Application.objects.filter(Q(person=per_obj), Q(start__lte=datetime.now()) | Q(exam__att1=0) | Q(exam__att2=0)).order_by(
+        '-id')[int(amount):int(amount) + int(last)]
+    json_str = clean(obj, count)
+    return HttpResponse(json_str)
+
+#待调度
+def to_distribute(request):
+    last = request.POST.get('last')
+    amount = request.POST.get('amount')
+    count = models.Application.objects.filter(
+        car__isnull=True, driver__isnull=True,exam__att1=1,exam__att2=1).count()
+    obj = models.Application.objects.filter(car__isnull=True, driver__isnull=True,exam__att1=1,exam__att2=1).order_by(
+        '-id')[int(amount):int(amount) + int(last)]
+    json_str = clean(obj, count)
+    return HttpResponse(json_str)
+
+#调度
+def dris_cars(request):
+    start=request.POST.get('start')
+    ab_end=request.POST.get('ab_end')
+    end=int(start)+int(ab_end)
+    start_data=datetime.datetime.fromtimestamp(int(start))
+    end_data=datetime.datetime.fromtimestamp(int(end))
+    obj=models.Application.objects.filter(Q(end__isnull=False),Q(start__range=(start_data,end_data))|Q(ab_end__range=(start_data,end_data))|Q(start__lt=start_data,ab_end__gt=end_data))
+    per_obj=models.Persons.objects.filter(role=1)
+    car_obj=models.Cars.objects.all()
+    dic={}
+    dic1={}
+    dic2={}
+    for per in per_obj:
+        dic1[str(per.id)]={'name':per.name,'tel':per.tel,'state':'1'}
+    for car in car_obj:
+        dic2[str(car.id)]={'style':car.brand+car.style,'lic':car.license,'cap':car.cap,'state':'1'}
+    for a in obj:
+        dic1[str(a.driver.id)]['state']='0'
+        dic2[str(a.car.id)]['state']='0'
+    dic['drivers']=dic1
+    dic['cars']=dic2
+    json_str=json.dumps(dic)
+    return HttpResponse(json_str)
+
+#已调度
+def distributed(request):
+    last = request.POST.get('last')
+    amount = request.POST.get('amount')
+    count = models.Application.objects.filter(
+        car__isnull=False, driver__isnull=False).count()
+    obj = models.Application.objects.filter(car__isnull=False, driver__isnull=False).order_by(
+        '-id')[int(amount):int(amount) + int(last)]
+    json_str = clean(obj, count)
+    return HttpResponse(json_str)
+    
