@@ -13,12 +13,8 @@ from .aliyun import *
 from .clean import *
 
 # Create your views here.
-
-# 您有一${type}任务急需处理，请您及时登录<SSSNOW用车>。您正在登录<SSSNOW用车>，此次登录验证码为${code}，请不要泄露给其他人。
-
-
 def test(request):
-    return render(request, 'usecar/test.html', {'response': 1})
+    return render(request, 'usecar/test.html', {'response': '1'})
 
 
 def login(request):
@@ -320,8 +316,8 @@ def to_distribute(request):
     json_str = clean(obj, count)
     return HttpResponse(json_str)
 
-#调度
-def dris_cars(request):
+#可调度车辆与司机
+def dris_dricars(request):
     start=request.POST.get('start')
     ab_end=request.POST.get('ab_end')
     end=int(start)+int(ab_end)
@@ -344,6 +340,20 @@ def dris_cars(request):
     dic['cars']=dic2
     json_str=json.dumps(dic)
     return HttpResponse(json_str)
+#调度
+def distribute(request):
+    appl_id=request.POST.get('id')
+    dri_id=request.POST.get('dri_id')
+    dri_tel=request.POST.get('dri_tel')
+    car_id=request.POST.get('car_id')
+    driver=models.Companies.objects.get(id=request.session.get('dri_id'))
+    car=models.Companies.objects.get(id=request.session.get('car_id'))
+    u = models.Application(car=car, driver=driver)
+    u.save()
+    __business_id = uuid.uuid1()
+    params = "{\"type\":\"出车\"}"
+    send_sms(__business_id, dri_tel, "SSSNOW用车", "SMS_78770137", params)
+    return JsonResponse({'msg': 'ok'})
 
 #已调度
 def distributed(request):
@@ -427,3 +437,9 @@ def inser_driver(request):
     u = models.Persons(name=request.POST.get('name'), tel=request.POST.get('tel'), role=1,co=obj)
     u.save()
     return JsonResponse({'msg': ok})
+
+#退出登录
+def logout(request):
+    request.session.delete("session_key")
+    return redirect('/login/')
+    
