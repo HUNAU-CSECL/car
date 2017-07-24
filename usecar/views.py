@@ -78,9 +78,9 @@ def login_success(request):
         request.session['per_id'] = fri_person_id
         request.session['com_id'] = fri_com_id
         request.session['coms'] = json_str
-        return redirect('/main/')
+        return redirect('/usecar/main/')
     else:
-        return redirect('/login/')
+        return redirect('/usecar/login/')
 
 
 def selects(request):
@@ -91,7 +91,7 @@ def selects(request):
 def shift(request):
     request.session['per_id'] = int(request.POST.get('per_id'))  # type is int
     request.session['com_id'] = int(request.POST.get('com_id'))  # type is int
-    return redirect('/main/')
+    return redirect('/usecar/main/')
 
 
 def main(request):
@@ -100,13 +100,13 @@ def main(request):
     role = int(obj['role'])
     request.session['role'] = role
     if role == 1:
-        return render(request, 'driver_index.html')
+        return render(request, 'usecar/driver_index.html')
     elif role == 2:
-        return render(request, 'tran_index.html')
+        return render(request, 'usecar/tran_index.html')
     elif role == 3:
-        return render(request, 'appl_index.html')
+        return render(request, 'usecar/proposer.html')
     else:
-        return render(request, 'check_index.html')
+        return render(request, 'usecar/check_index.html')
 
 
 def exam_persons(request):
