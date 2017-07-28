@@ -1,0 +1,101 @@
+body{
+	margin:0px auto;
+	padding:0px auto ;
+}
+.home-proxy {
+    background-color: #ecf0f3;
+}
+#home{
+	height:100%;
+}
+.home-proxy-info.weui-grids {
+    background-color: #2A3549;
+}
+.home-proxy-info{
+	height:130px;
+}
+.home-proxy .weui-grids {
+    font-weight: 300;
+    line-height: 20px;
+    font-size: 1.2rem;
+}
+.weui-grid:active {
+    background-color:#2A3549 ;
+    }
+.weui-grid:after{
+	border-bottom:none;
+}
+.home-proxy-title{
+	margin-top:10px;
+	margin-bottom: 10px;
+	margin-left:6px;
+	font-size:14px;
+	color:#939191;
+}
+.home-proxy-menu, .proxy-login {
+    background-color: #fff;
+}
+#home .weui-col-50{
+	width:50%;
+	margin-top: 14px;
+}
+.weui-grid__label{
+	font-size:16px;
+}
+.weui-grid {
+    position: relative;
+    float: left;
+    padding: 20px 10px;
+    width: 33.33333333%;
+    box-sizing: border-box;
+}
+.home-proxy-info .weui-grid__label {
+    color: #f8ffff;
+}
+.home-proxy-menu a {
+    color: #6d6d6d;
+}
+.weui-grid:before{
+	border-right: none
+}
+#b_title .weui-grid{
+	border-right:1px solid #dfdbdb;
+	border-bottom:1px solid #dfdbdb;
+}
+.weui-grid__icon+.weui-grid__label{
+	margin-top:10px;
+}
+.fa-user{
+	font-size: 18px;
+}
+/*待派送*/
+#apply-title {
+    background-color:#2a3549;
+}
+  #apply-title span{
+    font-size:15px;
+    margin-left:8px;
+  }
+  #sj_content{
+    margin-top: 52px;
+    background: none;
+}
+.label_title {
+    font-size: 16px;
+    color: #000;
+    font-weight: bold;
+}
+.weui-form-preview__hd .weui-form-preview__value {
+    font-style: normal;
+    font-size: 0.6em;
+}
+.weui-form-preview__hd{
+    padding-top:0px;
+}
+.weui-form-preview{
+    margin-top:12px;
+}
+.weui-form-preview__label{
+    font-weight:bold;
+    color:#353333;
+}

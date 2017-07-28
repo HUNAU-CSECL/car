@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>用车申请</title>
+    <link rel="stylesheet" href="../lib/weui.min.css">
+    <link rel="stylesheet" href="../css/jquery-weui.css">
+    <link rel="stylesheet" href="../assets/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="css/demos.css">
+    <link rel="stylesheet" href="css/siji.css">
+</head>
+
+<body ontouchstart>
+    <div class="page home-proxy" id="home">
+        <div class="home-proxy-info weui-grids">
+            <a href="javascript:" data-target="#waitgo" class="weui-grid weui-col-50 open-popup">
+                <div class="weui-grid__icon">
+                    <img src="images/wait.png" />
+                </div>
+                <p class="weui-grid__label">待出发</p>
+            </a>
+            <a href="javascript:" data-target="#scgo" class="weui-grid weui-col-50 open-popup">
+                <div class="weui-grid__icon">
+                    <img src="images/success-001.png" />
+                </div>
+                <p class="weui-grid__label">成功接送</p>
+            </a>
+        </div>
+        <p class="home-proxy-title">司机服务</p>
+        <div class="weui-grids home-proxy-menu" id="b_title">
+            <a href="javascript:" data-id="add_proxy" class="weui-grid">
+                <div class="weui-grid__icon">
+                    <img src="images/map.png" />
+                </div>
+                <p class="weui-grid__label">百度地图</p>
+            </a>
+            <a href="javascript:" data-id="proxy_recharge" class="weui-grid">
+                <div class="weui-grid__icon">
+                     <img src="images/zixun.png" />
+                </div>
+                <p class="weui-grid__label">车辆资讯</p>
+            </a>
+            <a href="javascript:" data-id="player_recharge" class="weui-grid">
+                <div class="weui-grid__icon">
+                   <img src="images/happy.png" />
+                </div>
+                <p class="weui-grid__label">玩玩乐</p>
+            </a>
+            <a href="javascript:" data-id="player_recharge" class="weui-grid">
+                <div class="weui-grid__icon">
+                   <i class="fa fa-user weui-tabbar__label" ></i>
+                </div>
+                <p class="weui-grid__label">个人信息</p>
+            </a>
+            <a href="javascript:" class="weui-grid esc">
+                <div class="weui-grid__icon">
+                   <img src="images/a.png" />
+                </div>
+                <p class="weui-grid__label">退出</p>
+            </a>
+        </div>
+    </div>
+        <div id="waitgo" class='weui-popup__container'>
+        <div class="weui-popup__overlay"></div>
+        <div class="weui-popup__modal" id="ms_a">
+     <header class="bar bar-nav" id="apply-title">
+        <h1 class="title">待派送列表</h1>
+        <a href="javascript:;" class="icon pull-left close-popup"><i class="fa fa-chevron-left"></i><span>返回</span></a>
+    </header> 
+    <div class="weui-form-preview" id="sj_content">
+    </div>        
+    </div>
+    <script src="../lib/fastclick.js"></script>
+    <script src="../lib/jquery-2.1.4.js"></script>
+    <script src="js/mock.js"></script>
+    <script src="../js/jquery-weui.js"></script>
+    <script src="js/siji.js"></script>
+</body>
+
+</html>

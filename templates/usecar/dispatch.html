@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>用车申请-个人申请</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="../lib/weui.min.css">
+    <link rel="stylesheet" href="../css/jquery-weui.css">
+    <link rel="stylesheet" href="../assets/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="css/diapatch.css">
+    <link rel="stylesheet" href="css/demos.css">
+        <script src="js/mobileSelect.js" type="text/javascript"></script>
+    <script src="../lib/jquery-2.1.4.js"></script>
+    <script src="js/diapatch.js"></script>
+    <script src="js/proposer.js"></script>
+    <script src="js/dropload.js"></script>
+    <script src="../lib/fastclick.js"></script>
+    <script>
+    $(function() {
+        FastClick.attach(document.body);
+    });
+    </script>
+    <script src="../js/jquery-weui.js"></script>
+</head>
+
+<body ontouchstart style="background:rgba(228, 227, 227, 0.6)">
+    <div class="weui-tab">
+        <div class="weui-tab__bd">
+            <div id="tp1" class="weui-tab__bd-item weui-tab__bd-item--active">
+                <div id="page_a">
+                    <div class="weui-grids my-grids" id="c_b">
+                        <a href="javascript:;" class="weui-grid my-weui open-popup" data-target="#page_a_a">
+                            <div class="weui-grid__icon">
+                                <i class="fa fa-th-list fa-zx" style="font-size: 34px;"></i>
+                            </div>
+                            <p class="weui-grid__label ">
+                                调度
+                            </p>
+                        </a>
+                        <a href="javascript:;" class="weui-grid my-weui open-popup" data-target="#page_b_b">
+                            <div class="weui-grid__icon">
+                                <i class="fa fa-align-right fa-2x" style="font-size:34px;"></i>
+                            </div>
+                            <p class="weui-grid__label">
+                                申请
+                            </p>
+                        </a>
+                    </div>
+                    <div class="weui-grids my-grids" id="c_a">
+                        <a href="sijimannger.html" class="weui-grid my-weui " >
+                            <div class="weui-grid__icon">
+                                <img src="images/siji.png" />
+                            </div>
+                            <p class="weui-grid__label">
+                                司机管理
+                            </p>
+                        </a>
+                        <a href="clmannger.html" id="show-custom" class="weui-grid my-weui ">
+                            <div class="weui-grid__icon">
+                                <img src="images/car.png" />
+                            </div>
+                            <p class="weui-grid__label">
+                                车辆管理
+                            </p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div id="tp3" class="weui-tab__bd-item">
+                <header class="bar bar-nav apply-title">
+                    <dl class="select">
+                        <dt>外交部</dt>
+                        <dd>
+                            <ul>
+                                <li><a href="#">人事部</a></li>
+                                <li><a href="#">财政部</a></li>
+                                <li><a href="#">商业部</a></li>
+                                <li><a href="#">信息部</a></li>
+                            </ul>
+                        </dd>
+                    </dl>
+                </header>
+                <section style="padding-top: 2.4rem;padding-left:0em;padding-right:0em;padding-bottom: 30px">
+                    <form action="" id="form">
+                        <div class="weui-cells weui-cells_form ">
+                            <div class="weui-cell">
+                                <div class="weui-cell__hd">
+                                    <label for="startime" class="weui-label">出发时间：</label>
+                                </div>
+                                <div class="weui-cell__bd">
+                                    <input class="weui-input" id="startime" type="text" placeholder="请选择(必填)" value="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="weui-cells weui-cells_form ">
+                            <div class="weui-cell">
+                                <div class="weui-cell__hd">
+                                    <label for="endtime" class="weui-label">使用时间：</label>
+                                </div>
+                                <div class="weui-cell__bd">
+                                    <input class="weui-input" id="endtime" type="text" value="" placeholder="请选择(必填)">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="weui-cells weui-cells_form ">
+                            <div class="weui-cell">
+                                <div class="weui-cell__hd">
+                                    <label class="weui-label" id="login-phone">始发地点:</label>
+                                </div>
+                                <div class="weui-cell__bd">
+                                    <input class="weui-input" id="destination" type="text" placeholder="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="weui-cells weui-cells_form ">
+                            <div class="weui-cell">
+                                <div class="weui-cell__hd">
+                                    <label class="weui-label" id="login-phone">出行地点:</label>
+                                </div>
+                                <div class="weui-cell__bd">
+                                    <input class="weui-input" id="destination" type="text" placeholder="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="weui-cells weui-cells_form ">
+                            <div class="weui-cell">
+                                <div class="weui-cell__hd">
+                                    <label class="weui-label" id="login-phone">同车人数：</label>
+                                </div>
+                                <div class="weui-cell__bd">
+                                    <input class="weui-input" id="number" type="text" placeholder="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="weui-cells weui-cells_form ">
+                            <div class="weui-cell">
+                                <div class="weui-cell__hd" id="reason">
+                                    <label class="weui-label">用车缘由：</label>
+                                </div>
+                                <div class="weui-cell__bd">
+                                    <textarea class="weui-textarea" id="textarea" placeholder="请输入简短的事由。" rows="2" maxlength="20"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="weui-cells__title"><i class="fa fa-star-half-o"></i>审批人</div>
+                        <div class="weui-cells weui-cells_form" id="shenpi">
+                            <div class="weui-row" id="shenpiren">
+                                <input class="weui-col-50 weui-input" id="in" type="text" placeholder="第一审批人" value="">
+                                <input class="weui-col-50 weui-input" id="in_a" type="text" placeholder="第二审批人" value="">
+                            </div>
+                        </div>
+                        <div class="weui-cells__title"><i class="fa fa-star-half-o"></i>抄送人</div>
+                        <div class="weui-cells weui-cells_form " id="chaosong">
+                            <div class="weui-cell" id="shenpiren">
+                                <input class="weui-input" id="on" type="text" value="">
+                            </div>
+                        </div>
+                        <div class='demos-content-padded' id="confirm">
+                            <input href="javascript:;" id='show-toast' class="weui-btn weui-btn_primary " value="确 认 提 交" type="submit">
+                        </div>
+                    </form>
+                </section>
+            </div>
+            <div id="tp4" class="weui-tab__bd-item">
+                <header class='demos-header' id="personal-img">
+                </header>
+                <div class="weui-row weui-no-gutter" id="per-title">
+                    <div id="per-touxiang"><img src="images/user2.jpg" /></div>
+                </div>
+                <div class="weui-row weui-no-gutter" id="per-mz">
+                    何晓殷
+                </div>
+                <div class="weui-cells">
+                    <a class="weui-cell weui-cell_access open-popup" id="per-message" data-target="#personal"><img src="images/my-in1.png" style="width:20px;margin-right:10px;display:block">
+                        <div class="weui-cell__bd">
+                            <p>个人信息</p>
+                        </div>
+                        <div class="weui-cell__ft">
+                        </div>
+                    </a>
+                    <a class="weui-cell weui-cell_access open-popup" id="per-message" href="javascript:;" data-target="#full"><img src="images/accoun.png" style="width:20px;margin-right:10px;display:block">
+                        <div class="weui-cell__bd">
+                            <p>账号与安全</p>
+                        </div>
+                        <div class="weui-cell__ft">
+                        </div>
+                    </a>
+                    <a class="weui-cell weui-cell_access" id="per-message" href="javascript:;"><img src="images/tell.png" style="width:20px;margin-right:10px;display:block">
+                        <div class="weui-cell__bd">
+                            <p>我的客服</p>
+                        </div>
+                        <div class="weui-cell__ft">
+                        </div>
+                    </a>
+                </div>
+                <div class="weui-cells">
+                    <a class="weui-cell weui-cell_access per-set open-popup" id="per-message" data-target="#mscenter"><img src="images/tongzhi.png" style="width:20px;margin-right:10px;display:block;color:red">
+                        <div class="weui-cell__bd">
+                            <p>消息中心</p>
+                        </div>
+                        <div class="weui-cell__ft">
+                        </div>
+                    </a>
+                </div>
+                <div class='demos-content-padded'>
+                    <a href="javascript:;" id="per-return" class="weui-btn weui-btn_primary ">退 出 登 录</a>
+                </div>
+            </div>
+        </div>
+        <div class="weui-tabbar">
+            <a href="#tp1" class="weui-tabbar__item weui-bar__item--on close-popup">
+                <!--           <span class="weui-badge" style="position: absolute;top: -.8em;right:2em;">8</span> -->
+                <div class="weui-tabbar__icon">
+                    <i class="fa fa-comments weui-tabbar__label"></i>
+                </div>
+                <p class="weui-tabbar__label">消息</p>
+            </a>
+            <a href="#tp3" class="weui-tabbar__item close-popup">
+                <div class="weui-tabbar__icon">
+                    <i class="fa fa-plus-circle  weui-tabbar__label"></i>
+                </div>
+                <p class="weui-tabbar__label">新建申请</p>
+            </a>
+            <a href="#tp4" class="weui-tabbar__item close-popup">
+                <div class="weui-tabbar__icon">
+                    <i class="fa fa-user   weui-tabbar__label"></i>
+                </div>
+                <p class="weui-tabbar__label">我</p>
+            </a>
+        </div>
+    </div>
+    <div id="personal" class='weui-popup__container'>
+        <div class="weui-popup__overlay"></div>
+        <div class="weui-popup__modal">
+            <header class='demos-header' id="personal-title">
+                <span style="margin-left:18px"> 个人信息</span>
+                <a href="javascript:;" class="icon close-popup" id="mz_close"><i class="fa fa-times" id="mz_cl" style="color:#e6ca32;;float:right;margin-right:18px"></i></a>
+            </header>
+            <div class="weui-cells">
+                <a class="weui-cell weui-cell_access" id="per-message" href="javascript:;">
+                    <div class="weui-cell__bd per">
+                        <p>头像</p>
+                    </div>
+                    <span style="margin-right:4px"><img src="images/user2.jpg"  id="permg"/></span>
+                    <div class="weui-cell__ft">
+                    </div>
+                </a>
+                <a class="weui-cell weui-cell_access open-popup" id="per-message" href="javascript:;" class="" data-target="#full">
+                    <div class="weui-cell__bd per">
+                        <p>所属部门</p>
+                    </div>
+                    <span style="color:#444;margin-right:4px">人事部</span>
+                    <div class="weui-cell__ft">
+                    </div>
+                </a>
+                <a class="weui-cell weui-cell_access" id="per-message" href="javascript:;">
+                    <div class="weui-cell__bd per">
+                        <p>绑定手机</p>
+                    </div>
+                    <span style="color:#444;margin-right:4px">185****6778</span>
+                    <div class="weui-cell__ft">
+                    </div>
+                </a>
+                <a class="weui-cell weui-cell_access" id="per-message" href="javascript:;">
+                    <div class="weui-cell__bd per">
+                        <p>性别</p>
+                    </div>
+                    <span style="color:#444;margin-right:4px">女</span>
+                    <div class="weui-cell__ft">
+                    </div>
+                </a>
+                <a class="weui-cell weui-cell_access" id="per-message" href="javascript:;">
+                    <div class="weui-cell__bd per">
+                        <p>地区</p>
+                    </div>
+                    <span style="color:#444;margin-right:4px">湖南长沙</span>
+                    <div class="weui-cell__ft">
+                    </div>
+                </a>
+                <a class="weui-cell weui-cell_access" id="per-message" href="javascript:;">
+                    <div class="weui-cell__bd per">
+                        <p>个人实名认证</p>
+                    </div>
+                    <span style="color:#444;margin-right:4px">已认证</span>
+                    <div class="weui-cell__ft">
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!--   账号与安全 -->
+    <div id="full" class='weui-popup__container'>
+        <div class="weui-popup__overlay"></div>
+        <div class="weui-popup__modal">
+            <header class='demos-header' id="personal-title">
+                <span style="margin-left:18px"> 账号安全</span>
+                <a href="javascript:;" class="icon close-popup" id="mz_close"><i class="fa fa-times" id="mz_cl" style="color:#e6ca32;;float:right;margin-right:18px"></i></a>
+            </header>
+            <div class="weui-cells">
+                <a class="weui-cell weui-cell_access" id="per-message" href="javascript:;"><img src="images/icon-read10.png" style="width:20px;margin-right:10px;display:block">
+                    <div class="weui-cell__bd">
+                        <p>登录密码</p>
+                    </div>
+                    <span style="color: #80a049;margin-right:4px">登录密码</span>
+                    <div class="weui-cell__ft">
+                    </div>
+                </a>
+                <a class="weui-cell weui-cell_access open-popup" id="per-message" href="javascript:;" class="" data-target="#full"><img src="images/icon-read9.png" style="width:20px;margin-right:10px;display:block">
+                    <div class="weui-cell__bd">
+                        <p>密保问题</p>
+                    </div>
+                    <span style="color:#f76160;margin-right:4px">请设置密保找回密码</span>
+                    <div class="weui-cell__ft">
+                    </div>
+                </a>
+                <a class="weui-cell weui-cell_access" id="per-message" href="javascript:;"><img src="images/icon-read8.png" style="width:20px;margin-right:10px;display:block">
+                    <div class="weui-cell__bd">
+                        <p>绑定手机</p>
+                    </div>
+                    <span style="color:#80a049;margin-right:4px">185****6778</span>
+                    <div class="weui-cell__ft">
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div id="mscenter" class='weui-popup__container'>
+        <div class="weui-popup__overlay"></div>
+        <div class="weui-popup__modal" id="ms_a">
+            <header class='demos-header' id="personal-title">
+                <span style="margin-left:18px"> 消息中心</span>
+                <a href="javascript:;" class="icon close-popup" id="mz_close"><i class="fa fa-times" id="mz_cl" style="color:#e6ca32;;float:right;margin-right:18px"></i></a>
+            </header>
+            <div class="ms_image">
+                <ul id="ms_ul">
+                    <li> <img src="images/dulb.png" /></li>
+                    <li> <span>暂无消息</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--     调度状态 -->
+    <div id="dd_a" class='weui-popup__container'>
+        <div class="weui-popup__overlay"></div>
+        <div class="weui-popup__modal">
+            <div class="tabHead">
+                <span class="active">未调度</span>
+                <span>已调度</span>
+                <b class="border"></b>
+            </div>
+            <article class="khfxWarp">
+                <section class="khfxPane" style="display:block">
+                </section>
+                <section class="khfxPane">
+                </section>
+            </article>
+        </div>
+    </div>
+    <!--    申请状态的页面 -->
+    <div id="page_b_b" class='weui-popup__container'>
+        <div class="weui-popup__overlay"></div>
+        <div class="weui-popup__modal" id="ms_a">
+            <div class="weui-tab">
+                <div class="weui-navbar">
+                    <div class="weui-navbar__item  weui-bar__item--on" href="#huad1">
+                        待审批
+                    </div>
+                    <div class="weui-navbar__item" href="#huad2">
+                        审批成功
+                    </div>
+                    <div class="weui-navbar__item" href="#huad3">
+                        审批失败
+                    </div>
+                </div>
+                <div class="weui-tab__bd">
+                    <div id="huad1" class="weui-tab__bd-item weui-tab__bd-item--active weui-pull-to-refresh">
+                        <div class="weui-pull-to-refresh__layer">
+                            <div class='weui-pull-to-refresh__arrow'></div>
+                            <div class='weui-pull-to-refresh__preloader'></div>
+                            <div class="down"></div>
+                            <div class="up"></div>
+                            <div class="refresh">正在刷新</div>
+                        </div>
+                        <div class="weui-cells weui-cells_form open-popup" id="usercar" data-target="#wait">
+                            <a class="weui-cell weui-cell_access " href="javascript:;">
+                                <div class="weui-cell__bd">
+                                    <p>赴湖南农大考察</p>
+                                    <span id="details">2017-7-22 ~ 2017-7-30</span>
+                                </div>
+                                <div class="weui-cell_zt">
+                                    待审核
+                                </div>
+                                <div class="weui-cell__ft">
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div id="huad2" class="weui-tab__bd-item weui-pull-to-refresh">
+                        <div class="weui-pull-to-refresh__layer">
+                            <div class='weui-pull-to-refresh__arrow'></div>
+                            <div class='weui-pull-to-refresh__preloader'></div>
+                            <div class="down">下拉刷新</div>
+                            <div class="up">释放刷新</div>
+                            <div class="refresh">正在刷新</div>
+                        </div>
+                        <div class="weui-cells weui-cells_form" id="usercar_b">
+                            <a class="weui-cell weui-cell_access car_tg open-popup" href="javascript:;" data-target="#pass">
+                                <div class="weui-cell__bd">
+                                    <p>赴湖南农大考察</p>
+                                    <span id="details">2017-7-22 ~ 2017-7-30</span>
+                                </div>
+                                <div class="weui-cell_tg">
+                                    审核通过
+                                </div>
+                                <div class="weui-cell__ft">
+                                </div>
+                            </a>
+                            <a class="weui-cell weui-cell_access car_tg open-popup" href="javascript:;" data-target="pass">
+                                <div class="weui-cell__bd">
+                                    <p>赴湖南农大考察</p>
+                                    <span id="details">2017-7-22 ~ 2017-7-30</span>
+                                </div>
+                                <div class="weui-cell_tg">
+                                    审核通过
+                                </div>
+                                <div class="weui-cell__ft">
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div id="huad3" class="weui-tab__bd-item weui-pull-to-refresh">
+                        <div class="weui-pull-to-refresh__layer">
+                            <div class='weui-pull-to-refresh__arrow'></div>
+                            <div class='weui-pull-to-refresh__preloader'></div>
+                            <div class="down">下拉刷新</div>
+                            <div class="up">释放刷新</div>
+                            <div class="refresh">正在刷新</div>
+                        </div>
+                        <div class="weui-cells weui-cells_form" id="usercar_c">
+                            <a class="weui-cell weui-cell_access car_tf open-popup" href="javascript:;" data-target="#fail">
+                                <div class="weui-cell__bd">
+                                    <p>赴湖南农大考察</p>
+                                    <span id="details">2017-7-22 ~ 2017-7-30</span>
+                                </div>
+                                <div class="weui-cell_tf">
+                                    审核失败
+                                </div>
+                                <div class="weui-cell__ft">
+                                </div>
+                            </a>
+                            <a class="weui-cell weui-cell_access car_tf open-popup" href="javascript:;" data-target="#fail">
+                                <div class="weui-cell__bd">
+                                    <p>赴湖南农大考察</p>
+                                    <span id="details">2017-7-22 ~ 2017-7-30</span>
+                                </div>
+                                <div class="weui-cell_tf">
+                                    审核失败
+                                </div>
+                                <div class="weui-cell__ft">
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--      审核三种状态 -->
+    <div id="wait" class='weui-popup__container'>
+        <div class="weui-popup__overlay"></div>
+        <div class="weui-popup__modal">
+            <header class="bar bar-nav" id="apply-title">
+                <a href="javascript:;" class="icon pull-left close-popup" id="return_a"><i class="fa fa-chevron-left"></i><span >返回</span></a>
+                <h1 class="title">处理详情</h1>
+            </header>
+            <section style="padding-top: 2.2rem;padding-bottom:2px">
+                <div class="weui-panel weui-panel_accesss">
+                    <div class="weui-panel__bd">
+                        <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
+                            <div class="weui-media-box__hd">
+                                <img class="weui-media-box__thumb" src="images/user3.jpg" alt="">
+                            </div>
+                            <div class="weui-media-box__bd">
+                                <h4 class="weui-media-box__title" id="myapply-ming">何晓殷</h4>
+                                <div class="weui-media-box__desc" id="myapply-zt">
+                                    <span>等待调度员派车</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="weui-flex" id="myapply-me">
+                    <label>审批编号</label>
+                    <div class="weui-flex__item">0100</div>
+                </div>
+                <div class="weui-flex" id="myapply-me">
+                    <label>联系电话</label>
+                    <div class="weui-flex__item">183748828</div>
+                </div>
+                <div class="weui-flex" id="myapply-me">
+                    <label>用车缘由</label>
+                    <div class="weui-flex__item">出差</div>
+                </div>
+                <div class="weui-flex" id="myapply-me">
+                    <label>用车日期</label>
+                    <div class="weui-flex__item">2017-07-11 12:00</div>
+                </div>
+                <div class="weui-flex" id="myapply-me">
+                    <label>预计用时</label>
+                    <div class="weui-flex__item">3（天）</div>
+                </div>
+                <div class="weui-flex" id="myapply-me">
+                    <label>返回地点</label>
+                    <div class="weui-flex__item">湖南郴州</div>
+                </div>
+                <div class="weui-flex" id="myapply-me">
+                    <label>审批人员</label>
+                    <div class="weui-flex__item">姚敏</div>
+                </div>
+                <div class="weui-flex" id="myapply-me">
+                    <label>审批人员</label>
+                    <div class="weui-flex__item">刘茂林</div>
+                </div>
+                <div class="weui-flex" id="myapply-me">
+                    <label>抄送人员</label>
+                    <div class="weui-flex__item">于越</div>
+                </div>
+                <div class="weui-flex myapply-t" id="myapply-me">
+                    <div class="weui-cells__title"><i class="fa fa-star-half-o"></i>车辆明细</div>
+                </div>
+                <div class="weui-flex" id="myapply-me">
+                    <label>车辆数量</label>
+                    <div class="weui-flex__item">1</div>
+                </div>
+                <div class="weui-flex myapply-t" id="myapply-me">
+                    <div class="weui-cells__title"><i class="fa fa-star-half-o"></i>审批状态</div>
+                </div>
+                <div class="weui-flex myapply-t" id="myapply-lc">
+                    <input type="hidden" value=${detailorder.status } id="o_status" />
+                    <!--后台传到页面的数据-->
+                    <div class="stepInfo">
+                        <ul>
+                            <li></li>
+                            <li></li>
+                        </ul>
+                        <div class="stepIco stepIco1 lb" id="create">1
+                            <div class="stepText" id="createText">我发起申请</div>
+                        </div>
+                        <div class="stepIco stepIco2 lb" id="check">2
+                            <div class="stepText" id="checkText">审批1</div>
+                        </div>
+                        <div class="stepIco stepIco3 lb" id="produce">3
+                            <div class="stepText" id="produceText">审批2</div>
+                        </div>
+                        <div class="stepIco stepIco4 lb" id="received">5
+                            <div class="stepText" id="receivedText">调度员派车</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="weui-row" id="myapply-bottom">
+                    <div class="weui-col-50  bottoma" href="javascript:;" id='show-login'>催办</div>
+                    <div class="weui-col-50 bottomb" id="show-toast-forbidden">撤销</div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <div id="pass" class='weui-popup__container'>
+        <div class="weui-popup__overlay"></div>
+        <div class="weui-popup__modal">
+            <header class="bar bar-nav" id="apply-title">
+                <a href="javascript:;" class="icon pull-left close-popup" id="return_a"><i class="fa fa-chevron-left"></i><span >返回</span></a>
+                <h1 class="title">处理详情</h1>
+            </header>
+            <div class="weui-form-preview">
+                <div class="weui-form-preview__hd">
+                    <div class="weui-form-preview__item">
+                        <div class="weui-form-preview__item">
+                            <label class="weui-form-preview__label" id="label_title">赴湖南农业大学考察</label>
+                            <span class="weui-form-preview__value">2017-07-11</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="weui-form-preview__bd">
+                    <div class="weui-form-preview__item">
+                        <label class="weui-form-preview__label">用车人</label>
+                        <span class="weui-form-preview__value">何晓殷</span>
+                    </div>
+                    <div class="weui-form-preview__item">
+                        <label class="weui-form-preview__label">申请部门</label>
+                        <span class="weui-form-preview__value">人事部</span>
+                    </div>
+                    <div class="weui-form-preview__item">
+                        <label class="weui-form-preview__label">联系方式</label>
+                        <span class="weui-form-preview__value">18237223232</span>
+                    </div>
+                    <div class="weui-form-preview__item">
+                        <label class="weui-form-preview__label">出发时间</label>
+                        <span class="weui-form-preview__value">2017-11-12</span>
+                    </div>
+                    <div class="weui-form-preview__item">
+                        <label class="weui-form-preview__label">用车时间</label>
+                        <span class="weui-form-preview__value">3天</span>
+                    </div>
+                    <div class="weui-form-preview__item">
+                        <label class="weui-form-preview__label">同车人数</label>
+                        <span class="weui-form-preview__value">5人</span>
+                    </div>
+                    <div class="weui-form-preview__item">
+                        <label class="weui-form-preview__label">车辆分配信息</label>
+                        <span class="weui-form-preview__value">小车 宝马</span>
+                    </div>
+                    <div class="weui-form-preview__item">
+                        <label class="weui-form-preview__label">跟车司机</label>
+                        <span class="weui-form-preview__value">谢小兵司机</span>
+                    </div>
+                </div>
+            </div>
+            </section>
+        </div>
+    </div>
+    <div id="fail" class='weui-popup__container'>
+        <div class="weui-popup__overlay"></div>
+        <div class="weui-popup__modal">
+            <header class="bar bar-nav" id="apply-title">
+                <a href="javascript:;" class="icon pull-left close-popup" id="return_a"><i class="fa fa-chevron-left"></i><span >返回</span></a>
+                <h1 class="title">处理详情</h1>
+            </header>
+            <section>
+                <div class="weui-form-preview" id="fail_a">
+                    <div class="weui-form-preview__hd">
+                        <div class="weui-form-preview__item">
+                            <div class="weui-form-preview__item">
+                                <label class="weui-form-preview__label" id="label_title">赴湖南农业大学考察</label>
+                                <span class="weui-form-preview__value">2017-07-11</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="weui-form-preview__bd">
+                        <div class="weui-form-preview__item">
+                            <label class="weui-form-preview__label">用车人</label>
+                            <span class="weui-form-preview__value">何晓殷</span>
+                        </div>
+                        <div class="weui-form-preview__item">
+                            <label class="weui-form-preview__label">申请部门</label>
+                            <span class="weui-form-preview__value">人事部</span>
+                        </div>
+                        <div class="weui-form-preview__item">
+                            <label class="weui-form-preview__label">联系方式</label>
+                            <span class="weui-form-preview__value">18237223232</span>
+                        </div>
+                        <div class="weui-form-preview__item">
+                            <label class="weui-form-preview__label">出发时间</label>
+                            <span class="weui-form-preview__value">2017-11-12</span>
+                        </div>
+                        <div class="weui-form-preview__item">
+                            <label class="weui-form-preview__label">用车时间</label>
+                            <span class="weui-form-preview__value">3天</span>
+                        </div>
+                        <div class="weui-form-preview__item">
+                            <label class="weui-form-preview__label">同车人数</label>
+                            <span class="weui-form-preview__value">5人</span>
+                        </div>
+                        <div class="weui-form-preview__item">
+                            <label class="weui-form-preview__label">车辆分配信息</label>
+                            <span class="weui-form-preview__value">小车 宝马</span>
+                        </div>
+                        <div class="weui-form-preview__item">
+                            <label class="weui-form-preview__label">跟车司机</label>
+                            <span class="weui-form-preview__value">谢小兵司机</span>
+                        </div>
+                    </div>
+                    <div class="weui-form-preview__ft">
+                        <a class="weui-form-preview__btn weui-form-preview__btn_primary" id="delete" href="javascript:"><i class="fa fa-trash-o fa-2x"></i></a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <!-- 调度的两种状态 -->
+    <!--    申请状态的页面 -->
+    <div id="page_a_a" class='weui-popup__container'>
+        <div class="weui-popup__overlay"></div>
+        <div class="weui-popup__modal" id="ms_a">
+            <div class="weui-tab">
+                <div class="weui-navbar ">
+                    <div class="weui-navbar__item  weui-bar__item--on" href="#pag1">
+                        未调度
+                    </div>
+                    <div class="weui-navbar__item" href="#pag2">
+                        已调度
+                    </div>
+                </div>
+                <div class="weui-tab__bd">
+                    <div id="pag1" class="weui-tab__bd-item weui-tab__bd-item--active weui-pull-to-refresh">
+                        <div class="weui-pull-to-refresh__layer">
+                            <div class='weui-pull-to-refresh__arrow'></div>
+                            <div class='weui-pull-to-refresh__preloader'></div>
+                            <div class="down"></div>
+                            <div class="up"></div>
+                            <div class="refresh">正在刷新</div>
+                        </div>
+                        <div class="weui-grids" id="waitsp">
+                            <div class="weui-grid">
+                                <header>赴五一调研</header>
+                                <div id="photo"><span>晓殷</span></div>
+                            </div>
+                            <div class="weui-grid xinxi">
+                                <span><label>申请人：</label>何晓殷</span>
+                                <span><label>部门：</label>人事部</span>
+                                <span><label>用车时长（天）：</label>3</span>
+                                <span><label>申请时间：</label>2017-10-20</span>
+                                <footer id="footer-details" class="open-popup" data-target="#ft_details"><a href="javascript:;">查看详情</a></footer>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="pag2" class="weui-tab__bd-item weui-pull-to-refresh">
+                        <div class="weui-pull-to-refresh__layer">
+                            <div class='weui-pull-to-refresh__arrow'></div>
+                            <div class='weui-pull-to-refresh__preloader'></div>
+                            <div class="down">下拉刷新</div>
+                            <div class="up">释放刷新</div>
+                            <div class="refresh">正在刷新</div>
+                        </div>
+                        <div class="weui-grids open-popup" id="waitsp" data-target="#cl_details">
+                            <div class="weui-grid">
+                                <header>赴五一调研</header>
+                                <div id="photo"><span>晓殷</span></div>
+                            </div>
+                            <div class="weui-grid xinxi">
+                                <span><label>申请人：</label>何晓殷</span>
+                                <span><label>部门：</label>人事部</span>
+                                <span><label>用车时长（天）：</label>3</span>
+                                <span><label>申请时间：</label>2017-10-20</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--    已经调度的详情 -->
+    <div id="cl_details" class='weui-popup__container'>
+        <div class="weui-popup__overlay"></div>
+        <div class="weui-popup__modal">
+            <section>
+                <header class="bar bar-nav" id="dongtai-title">
+                    <a href="javascript:;" class="icon pull-left close-popup" id="return_a"><i class="fa fa-chevron-left"></i><span >返回</span></a>
+                    <h1 class="title">处理详情</h1>
+                </header>
+                <div class="weui-form-preview">
+                    <div class="weui-form-preview__hd">
+                        <div class="weui-form-preview__item">
+                            <div class="weui-form-preview__item">
+                                <label class="weui-form-preview__label" id="label_title">赴湖南农业大学考察</label>
+                                <span class="weui-form-preview__value">2017-07-11</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="weui-form-preview__bd">
+                        <div class="weui-form-preview__item">
+                            <label class="weui-form-preview__label">用车人</label>
+                            <span class="weui-form-preview__value">何晓殷</span>
+                        </div>
+                        <div class="weui-form-preview__item">
+                            <label class="weui-form-preview__label">申请部门</label>
+                            <span class="weui-form-preview__value">人事部</span>
+                        </div>
+                        <div class="weui-form-preview__item">
+                            <label class="weui-form-preview__label">联系方式</label>
+                            <span class="weui-form-preview__value">18237223232</span>
+                        </div>
+                        <div class="weui-form-preview__item">
+                            <label class="weui-form-preview__label">出发时间</label>
+                            <span class="weui-form-preview__value">2017-11-12</span>
+                        </div>
+                        <div class="weui-form-preview__item">
+                            <label class="weui-form-preview__label">用车时间</label>
+                            <span class="weui-form-preview__value">3天</span>
+                        </div>
+                        <div class="weui-form-preview__item">
+                            <label class="weui-form-preview__label">同车人数</label>
+                            <span class="weui-form-preview__value">5人</span>
+                        </div>
+                        <div class="weui-form-preview__item">
+                            <label class="weui-form-preview__label">车辆分配信息</label>
+                            <span class="weui-form-preview__value">小车 宝马</span>
+                        </div>
+                        <div class="weui-form-preview__item">
+                            <label class="weui-form-preview__label">跟车司机</label>
+                            <span class="weui-form-preview__value">谢小兵司机</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <!--    未调度详情 -->
+    <!--  审批详情 -->
+         <div id="ft_details" class='weui-popup__container'>
+           <div class="weui-popup__overlay"></div>
+           <div class="weui-popup__modal">
+                   <header class="bar bar-nav" id="dongtai-title">
+                     <a href="javascript:;"  class="icon pull-left close-popup" id="return_a"><i class="fa fa-chevron-left"></i><span >返回</span></a>
+                   <h1 class="title">调度详情</h1>
+                </header>
+       <div class="weui-tab">
+        <div class="weui-navbar" style="margin-top:40px" >
+            <div class="weui-navbar__item weui-bar__item--on" href="#dd1">
+                详细信息
+            </div>
+            <div class="weui-navbar__item " href="#dd2">
+                调度处理
+            </div>
+        </div>
+        <div class="weui-tab__bd" >
+            <div id="dd1" class="weui-tab__bd-item weui-tab__bd-item--active weui-pull-to-refresh">
+                <div class="weui-pull-to-refresh__layer" style="display:none">
+                    <div class='weui-pull-to-refresh__preloader' style="display:none"></div>
+                    <div class="down" style="display:none"></div>
+                    <div class="up" style="display:none"></div>
+                    <div class="refresh">正在刷新</div>
+                </div>
+                <h1 class="doc-head"></h1>
+                <div class="content-padded">
+                    <div class="dp_cata">
+                        <div class="weui-flex" id="myapply-me">
+                            <label>申 请 人 </label>
+                            <div class="weui-flex__item">何晓殷</div>
+                        </div>
+                        <div class="weui-flex" id="myapply-me">
+                            <label>审批编号</label>
+                            <div class="weui-flex__item">0100</div>
+                        </div>
+                        <div class="weui-flex" id="myapply-me">
+                            <label>申请部门</label>
+                            <div class="weui-flex__item">营销部</div>
+                        </div>
+                        <div class="weui-flex" id="myapply-me">
+                            <label>联系电话</label>
+                            <div class="weui-flex__item">183748828</div>
+                        </div>
+                        <div class="weui-flex" id="myapply-me">
+                            <label>用车缘由</label>
+                            <div class="weui-flex__item">出差</div>
+                        </div>
+                        <div class="weui-flex" id="myapply-me">
+                            <label>用车日期</label>
+                            <div class="weui-flex__item">2017-07-11 12:00</div>
+                        </div>
+                        <div class="weui-flex" id="myapply-me">
+                            <label>预计用时</label>
+                            <div class="weui-flex__item">3（天）</div>
+                        </div>
+                        <div class="weui-flex" id="myapply-me">
+                            <label>车辆类型</label>
+                            <div class="weui-flex__item">小轿车</div>
+                        </div>
+                        <div class="weui-flex" id="myapply-me">
+                            <label>车辆数量</label>
+                            <div class="weui-flex__item">1</div>
+                        </div>
+                        <div class="weui-flex" id="myapply-me">
+                            <label>审批人员</label>
+                            <div class="weui-flex__item">姚敏</div>
+                        </div>
+                        <div class="weui-flex" id="myapply-me">
+                            <label>审批人员</label>
+                            <div class="weui-flex__item">刘茂林</div>
+                        </div>
+                        <div class="weui-flex" id="myapply-me">
+                            <label>抄送人员</label>
+                            <div class="weui-flex__item">于越</div>
+                        </div>
+                        <div class="weui-row">
+                            <img src="images/lianjie.png" />
+                            <ul >
+                                <li id="id_a">湖南省长沙市芙蓉区浏阳河</li>
+                                <li id="id_b">湖南省郴州市永兴县</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="dd2" class="weui-tab__bd-item weui-pull-to-refresh">
+                <h1 class="doc-head"></h1>
+                <div class="content-padded">
+                    <div class="weui-cells__title"><i class="fa fa-star-half-o"></i>车辆选择</div>
+                    <div class="demo">
+                        <div id="trigger5">车辆选择</div>
+                        <div class="weui-cells__title"><i class="fa fa-star-half-o"></i>司机选择</div>
+                        <div id="trigger1">司机选择</div>
+                    </div>
+                    <div class='demos-content-padded' id="confirm" onclick="window.location.href= ''">
+                        <input href="javascript:;" id='show-toast' class="weui-btn weui-btn_primary " value="确 认 提 交" type="submit" style="margin-top:30px">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    <script type="text/javascript">
+    var weekdayArr = ['张三司机 18283112121', '李四司机 12817218278', '王五司机 121212818182', '崔敏司机 1921892010', '刘生司机 1788218212 ', '姚健司机 121821821 ', '周汉司机 12329132712 '];
+    var UplinkData = [{
+        id: '1',
+        value: '中巴',
+        childs: [{
+            id: '2',
+            value: '51座金龙客车'
+        }, {
+            id: '3',
+            value: '55座双层巴士'
+        }, ]
+    }, {
+        id: '2',
+        value: '小轿车',
+        childs: [{
+            id: '1',
+            value: '桑塔纳'
+        }, {
+            id: '2',
+            value: '宝马'
+        }, {
+            id: '3',
+            value: '一汽大众'
+        }, {
+            id: '4',
+            value: '长安'
+        }, ]
+    }, {
+        id: '3',
+        value: '吉普车',
+        childs: [{
+            id: '1',
+            value: '东风铁甲'
+        }, {
+            id: '2',
+            value: '北汽勇士'
+        }, {
+            id: '3',
+            value: '广汽菲亚特克莱斯勒Jeep'
+        }, ]
+    }, {
+        id: '4',
+        value: '面包车',
+        childs: [{
+            id: '1',
+            value: '长安'
+        }, {
+            id: '2',
+            value: '五菱'
+        }, {
+            id: '3',
+            value: '东风'
+        }]
+    }, {
+        id: '5',
+        value: '中型客车',
+        childs: [{
+            id: '1',
+            value: '东南得利卡1'
+        }, {
+            id: '2',
+            value: '东南得利卡2'
+        }, {
+            id: '3',
+            value: '东南得利卡3'
+        }]
+    }];
+    var mobileSelect1 = new MobileSelect({
+        trigger: '#trigger1',
+        title: '单项选择',
+        wheels: [{
+            data: weekdayArr
+        }],
+        position: [2] //初始化定位 打开时默认选中的哪个  如果不填默认为0
+    });
+    var mobileSelect5 = new MobileSelect({
+        trigger: '#trigger5',
+        title: '车辆选择',
+        wheels: [{
+            data: UplinkData
+        }],
+        transitionEnd: function(indexArr, data) {
+            console.log(data);
+        },
+        callback: function(indexArr, data) {
+            console.log(data);
+        }
+    });
+    </script>
+        <script type="text/javascript">
+    var weekdayArr = ['张三司机 18283112121', '李四司机 12817218278', '王五司机 121212818182', '崔敏司机 1921892010', '刘生司机 1788218212 ', '姚健司机 121821821 ', '周汉司机 12329132712 '];
+    var UplinkData = [{
+        id: '1',
+        value: '中巴',
+        childs: [{
+            id: '2',
+            value: '51座金龙客车'
+        }, {
+            id: '3',
+            value: '55座双层巴士'
+        }, ]
+    }, {
+        id: '2',
+        value: '小轿车',
+        childs: [{
+            id: '1',
+            value: '桑塔纳'
+        }, {
+            id: '2',
+            value: '宝马'
+        }, {
+            id: '3',
+            value: '一汽大众'
+        }, {
+            id: '4',
+            value: '长安'
+        }, ]
+    }, {
+        id: '3',
+        value: '吉普车',
+        childs: [{
+            id: '1',
+            value: '东风铁甲'
+        }, {
+            id: '2',
+            value: '北汽勇士'
+        }, {
+            id: '3',
+            value: '广汽菲亚特克莱斯勒Jeep'
+        }, ]
+    }, {
+        id: '4',
+        value: '面包车',
+        childs: [{
+            id: '1',
+            value: '长安'
+        }, {
+            id: '2',
+            value: '五菱'
+        }, {
+            id: '3',
+            value: '东风'
+        }]
+    }, {
+        id: '5',
+        value: '中型客车',
+        childs: [{
+            id: '1',
+            value: '东南得利卡1'
+        }, {
+            id: '2',
+            value: '东南得利卡2'
+        }, {
+            id: '3',
+            value: '东南得利卡3'
+        }]
+    }];
+    var mobileSelect1 = new MobileSelect({
+        trigger: '#trigger1',
+        title: '单项选择',
+        wheels: [{
+            data: weekdayArr
+        }],
+        position: [2] //初始化定位 打开时默认选中的哪个  如果不填默认为0
+    });
+    var mobileSelect5 = new MobileSelect({
+        trigger: '#trigger5',
+        title: '车辆选择',
+        wheels: [{
+            data: UplinkData
+        }],
+        transitionEnd: function(indexArr, data) {
+            console.log(data);
+        },
+        callback: function(indexArr, data) {
+            console.log(data);
+        }
+    });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>用车申请</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	    <link rel="stylesheet" href="../lib/weui.min.css">
+    <link rel="stylesheet" href="../css/jquery-weui.css">
+        <link rel="stylesheet" href="../assets/font-awesome/css/font-awesome.css">
+        <link rel="stylesheet" href="css/demos.css">
+        <script src="../lib/jquery-2.1.4.js"></script>
+    <script src="js/sjimannger.js"></script>
+    <style>
+    body {
+        background-color: #fff;
+        margin:0 auto;
+        padding:0 auto;
+    }
+
+    .container {
+        margin: 60px auto;
+        overflow-y: hidden;
+    }
+               #apply-title {
+               background:#2A3549;
+               font-size: 18px;
+               font-weight: bold;
+               color: #fff;
+           }
+  .fa-chevron-left{
+    color:#fff;
+    position: absolute;
+    top:12px;
+    left:4px;
+    font-size:14px;
+  }
+  #apply-title span{
+    font-size:15px;
+    margin-left:28px;
+  }
+    </style>
+	
+    <script type="text/javascript">
+    $(function() {
+        var source = [{
+            id: 1,
+            name: "姚敏敏",
+            level: "1732132213"
+        }, {
+            id: 2,
+            name: "刘茂林",
+            level: "12344500121"
+        }, {
+            id: 101,
+            name: "于越",
+            level: "17458324553"
+        }, {
+            id: 102,
+            name: "周俊",
+            level: "13929389234"
+        }, {
+            id: 103,
+            name: "小胡",
+            level: "13535574363"
+        }, ];
+
+        function resetTabullet() {
+            $("#table").tabullet({
+                data: source,
+                action: function(mode, data) {
+                    console.dir(mode);
+                    if (mode === 'save') {
+                        source.push(data);
+                    }
+                    if (mode === 'edit') {
+                        for (var i = 0; i < source.length; i++) {
+                            if (source[i].id == data.id) {
+                                source[i] = data;
+                            }
+                        }
+                    }
+                    if (mode == 'delete') {
+                        for (var i = 0; i < source.length; i++) {
+                            if (source[i].id == data) {
+                                source.splice(i, 1);
+                                break;
+                            }
+                        }
+                    }
+                    resetTabullet();
+                }
+            });
+        }
+
+        resetTabullet();
+    });
+    </script>
+</head>
+
+<body>
+    <header class="bar bar-nav" id="apply-title">
+        <h1 class="title">司机信息</h1>
+        <a href="javascript:;" onclick="javascript:history.back(-1);" class="icon pull-left"><i class="fa fa-chevron-left"></i><span>返回</span></a>
+    </header>
+<div class="container">
+    <div class="row">
+        <div class="col-m-12">
+            <table class="table table-hover" id="table">
+                <thead>
+                    <tr data-tabullet-map="id" class="container">
+                        <th width="50" data-tabullet-map="_index" data-tabullet-readonly="true" class="col-xs-8" >姓名</th>
+                        <th data-tabullet-map="name" class="col-xs-4">电话号码</th>
+                        <th data-tabullet-map="level" class="col-xs-4"></th>
+                        <th width="50" data-tabullet-type="delete" class="col-xs-2"></th>
+                        <th width="50" data-tabullet-type="edit" class="col-xs-2"></th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

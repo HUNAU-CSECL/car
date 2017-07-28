@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>用车申请</title>
+    <link rel="stylesheet" href="../lib/weui.min.css">
+    <link rel="stylesheet" href="../css/jquery-weui.css">
+    <link rel="stylesheet" href="../assets/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="css/demos.css">
+    <link rel="stylesheet" href="css/clmannger.css">
+</head>
+
+<body ontouchstart>
+    <header class="bar bar-nav" id="apply-title">
+        <h1 class="title">车辆信息</h1>
+        <a href="javascript:;" onclick="javascript:history.back(-1);" class="icon pull-left"><i class="fa fa-chevron-left"></i><span>返回</span></a>
+        <span class="weui-btn weui-btn_primary open-popup" data-target="#half" id="add">添加</span>
+    </header>
+    <div class="weui-row weui-no-gutter" id="cl_title">
+        <div class="weui-col-33 a">车牌号</div>
+        <div class="weui-col-33 a">车型</div>
+        <div class="weui-col-33 a">容量</div>
+    </div>
+    <div class="weui-row" id="content">
+    </div>
+      <div class="weui-row" >
+         <input href="javascript:;" id="more" class="weui-btn weui-btn_primary " value="加载更多" type="submit">
+    </div>
+    <div id="half" class='weui-popup__container'>
+      <div class="weui-popup__overlay"></div>
+      <div class="weui-popup__modal">
+    <header class="bar bar-nav" id="apply-title">
+        <h1 class="title">添加车辆信息</h1>
+        <a href="javascript:;"  class="icon pull-left  close-popup"><i class="fa fa-chevron-left"></i><span>返回</span></a>
+    </header>
+                        <section style="padding-top: 2.4rem;padding-left:0em;padding-right:0em">
+                    <form action="" id="form">
+                        <div class="weui-cells weui-cells_form ">
+                            <div class="weui-cell">
+                                <div class="weui-cell__hd">
+                                    <label for="endtime" class="weui-label">车牌号：</label>
+                                </div>
+                                <div class="weui-cell__bd">
+                                    <input class="weui-input" id="lic" type="text" value="" placeholder="" value="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="weui-cells weui-cells_form ">
+                            <div class="weui-cell">
+                                <div class="weui-cell__hd">
+                                    <label class="weui-label" id="login-phone">品&nbsp;&nbsp;&nbsp;牌&nbsp;&nbsp;:</label>
+                                </div>
+                                <div class="weui-cell__bd">
+                                    <input class="weui-input" id="brand" type="text" placeholder="" value="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="weui-cells weui-cells_form ">
+                            <div class="weui-cell">
+                                <div class="weui-cell__hd">
+                                    <label class="weui-label" id="login-phone">车&nbsp;&nbsp;&nbsp;型&nbsp;&nbsp;：</label>
+                                </div>
+                                <div class="weui-cell__bd">
+                                    <input class="weui-input" id="style" type="text" placeholder="" value="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="weui-cells weui-cells_form ">
+                            <div class="weui-cell">
+                                <div class="weui-cell__hd">
+                                    <label class="weui-label" id="login-phone">容纳人数：</label>
+                                </div>
+                                <div class="weui-cell__bd">
+                                    <input class="weui-input" id="num" type="text" placeholder="" value="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class='demos-content-padded' id="confirm">
+                            <input href="javascript:;" id='show-toast' class="weui-btn weui-btn_primary " value="确 认 提 交" type="submit">
+                        </div>
+                    </form>
+                </section>
+      </div>
+    </div>
+    <script src="../lib/fastclick.js"></script>
+    <script src="../lib/jquery-2.1.4.js"></script>
+    <script src="js/mock.js"></script>
+    <script src="../js/jquery-weui.js"></script>
+    <script src="js/clmannger.js"></script>
+</body>
+
+</html>
